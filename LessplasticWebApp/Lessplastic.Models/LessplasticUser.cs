@@ -11,7 +11,7 @@ namespace Lessplastic.Models
             this.Comments = new HashSet<Comment>();
         }
 
-        public int TownId { get; set; }
+        public int? TownId { get; set; }
 
         public Town Town { get; set; }
 

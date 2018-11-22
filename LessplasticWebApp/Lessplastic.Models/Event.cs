@@ -17,10 +17,6 @@ namespace Lessplastic.Models
 
         public string Description { get; set; }
 
-        public int TownId { get; set; }
-
-        public Town Town { get; set; }
-
         public DateTime EventDate { get; set; }
 
         public ICollection<UserEvents> Participants { get; set; }

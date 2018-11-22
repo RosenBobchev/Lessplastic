@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LessplasticWebApp.Data;
 using Lessplastic.Models;
+using LessplasticWebApp.Utilities;
 
 namespace LessplasticWebApp
 {
@@ -42,7 +43,7 @@ namespace LessplasticWebApp
             services.AddIdentity<LessplasticUser, IdentityRole>(opt =>
             {
                 opt.Password.RequireDigit = false;
-                opt.Password.RequiredLength = 3;
+                opt.Password.RequiredLength = 6;
                 opt.Password.RequiredUniqueChars = 0;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
@@ -57,7 +58,7 @@ namespace LessplasticWebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -69,6 +70,8 @@ namespace LessplasticWebApp
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            SeedRoles.Seed(serviceProvider);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

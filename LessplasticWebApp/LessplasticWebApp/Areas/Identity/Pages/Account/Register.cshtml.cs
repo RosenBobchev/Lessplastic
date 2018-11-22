@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Lessplastic.Models;
+using LessplasticWebApp.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -20,17 +22,20 @@ namespace LessplasticWebApp.Areas.Identity.Pages.Account
         private readonly UserManager<LessplasticUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly ApplicationDbContext context;
 
         public RegisterModel(
             UserManager<LessplasticUser> userManager,
             SignInManager<LessplasticUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this.context = context;
         }
 
         [BindProperty]
@@ -40,6 +45,15 @@ namespace LessplasticWebApp.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required]
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
+
+            [Required]
+            [StringLength(12, MinimumLength =4)]
+            [Display(Name = "Town")]
+            public string TownName { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -67,10 +81,37 @@ namespace LessplasticWebApp.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new LessplasticUser { UserName = Input.Email, Email = Input.Email };
+                bool hasUser = true;
+
+                var user = new LessplasticUser { UserName = Input.UserName, Email = Input.Email };
+
+                if (!_signInManager.UserManager.Users.Any())
+                {
+                    hasUser = false;
+                }
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
                 if (result.Succeeded)
                 {
+
+                    var townExists = this.context.Towns.FirstOrDefault(t => t.TownName == Input.TownName);
+
+                    if (townExists == null)
+                    {
+                        var town = new Town
+                        {
+                            TownName = Input.TownName
+                        };
+                        town.Users.Add(user);
+                        this.context.Towns.Add(town);
+                        this.context.SaveChanges();
+                    }
+                    else
+                    {
+                        townExists.Users.Add(user);
+                        this.context.SaveChanges();
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -83,6 +124,14 @@ namespace LessplasticWebApp.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                    if (!hasUser)
+                    {
+                        var roleResult = _signInManager.UserManager.AddToRoleAsync(user, "Admin").Result;
+                        if (roleResult.Errors.Any())
+                        {
+                            return Page();
+                        }
+                    }
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }

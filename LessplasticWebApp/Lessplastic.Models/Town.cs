@@ -14,8 +14,6 @@ namespace Lessplastic.Models
 
         public string TownName { get; set; }
 
-        public string Country { get; set; }
-
         public ICollection<EventTowns> Events { get; set; }
 
         public ICollection<LessplasticUser> Users { get; set; }

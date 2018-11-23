@@ -1,4 +1,4 @@
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<LessplasticUser> SignInManager
 @inject UserManager<LessplasticUser> UserManager
@@ -6,33 +6,20 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item navbar-brand button-margin">
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="nav-link-white" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-link">
+                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="text-color" title="Manage"><i class="fas fa-user-circle"></i> Здравейте, @UserManager.GetUserName(User)!</a>
             </li>
-            <li class="nav-item button-margin">
-                <button type="submit" class="btn btn-link text-color navbar-link navbar-brand">Logout</button>
+            <li class="navbar-link">
+                    <button type="submit" class="btn btn-link text-color"><i class="fas fa-sign-out-alt"></i> Изход</button>
             </li>
-            @if (User.IsInRole("Admin"))
-            {
-                <li class="nav-item dropdown navbar-brand">
-                    <a class="nav-link text-color dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin Panel
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            }
         </ul>
     </form>
 }
 else
 {
-    <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><a asp-area="Identity" asp-page="/Account/Register" class="navbar-brand">Register</a></li>
-        <li class="nav-item"><a asp-area="Identity" asp-page="/Account/Login" class="navbar-brand">Login</a></li>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item nav-link"><a asp-area="Identity" asp-page="/Account/Register" class="text-color">Регистрация</a></li>
+        <li class="nav-item nav-link"><a asp-area="Identity" asp-page="/Account/Login" class="text-color">Вход</a></li>
     </ul>
 }

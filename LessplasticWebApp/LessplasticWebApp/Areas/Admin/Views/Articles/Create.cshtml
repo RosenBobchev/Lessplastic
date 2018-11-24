@@ -1,0 +1,74 @@
+﻿@model Lessplastic.Models.ViewModels.Articles.ArticleViewModel
+
+@{
+    ViewData["Title"] = "Създай статия";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<form asp-action="Create" class="mx-auto half-width">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Title" class="control-label">Заглавие</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ArticleImage" class="control-label">Снимка за заглавие</label>
+        <input asp-for="ArticleImage" class="form-control" />
+        <span asp-validation-for="ArticleImage" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content" class="control-label">Съдържание</label>
+        <textarea asp-for="Content" class="form-control" rows="5" cols="40"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ContentImage" class="control-label">Снимка</label>
+        <input asp-for="ContentImage" class="form-control" />
+        <span asp-validation-for="ContentImage" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdditionalContent" class="control-label">Допълнително съдържание</label>
+        <textarea asp-for="AdditionalContent" class="form-control" rows="5" cols="40"></textarea>
+        <span asp-validation-for="AdditionalContent" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdditionalContentImage" class="control-label">Допълнителна снимка</label>
+        <input asp-for="AdditionalContentImage" class="form-control" />
+        <span asp-validation-for="AdditionalContentImage" class="text-danger"></span>
+    </div>
+    <h4 class="text-center">Вид на статията</h4>
+    <hr class="bg-secondary w-50" />
+    <div class="row justify-content-around">
+        <div class="row justify-content-around">
+            @{
+                var types = new[] { "Regular", "Science" };
+            }
+            @foreach (var type in types)
+            {
+                var bgText = string.Empty;
+                if (type == "Regular")
+                {
+                    bgText = "Нормална";
+                }
+                else
+                {
+                    bgText = "Научна";
+                }
+                <div class="col-md-2">
+                    <input id="@type" type="radio" name="type" value="@type" />
+                    <label for="@type">@bgText</label>
+                </div>
+            }
+        </div>
+    </div>
+    <hr/>
+    <div class="form-group text-center">
+        <input type="submit" value="Създай" class="btn btn-default" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

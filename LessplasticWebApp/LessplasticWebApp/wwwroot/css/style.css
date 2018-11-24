@@ -6,9 +6,17 @@
 a {
     color: #F8F8FF;
 }
+.lessplastic-bg-color {
+    background-color: deepskyblue;
+    color: black;
+}
 
-.button-margin{
-    margin-top:8px;
+.text-black{
+    color:black;
+}
+
+.button-margin {
+    margin-top: 8px;
 }
 
 .logout-margin{

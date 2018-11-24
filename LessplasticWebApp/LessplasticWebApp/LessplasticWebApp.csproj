@@ -14,10 +14,23 @@
   <ItemGroup>
     <ProjectReference Include="..\Lessplastic.Data\Lessplastic.Data.csproj" />
     <ProjectReference Include="..\Lessplastic.Models\Lessplastic.Models.csproj" />
+    <ProjectReference Include="..\Lessplastic.Services\Lessplastic.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\_ValidationScriptsPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>

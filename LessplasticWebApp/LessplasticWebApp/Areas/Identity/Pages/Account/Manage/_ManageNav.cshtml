@@ -1,0 +1,17 @@
+﻿@inject SignInManager<LessplasticUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+<ul>
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-page="./Index" class="text-black">Профил</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)">
+        <a id="change-password" asp-page="./ChangePassword" class="text-black">Парола</a>
+    </li>
+    @if (hasExternalLogins)
+    {
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins">Фейсбук</a></li>
+    }
+    <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)">
+        <a asp-page="./PersonalData" class="text-black">Лична информация</a>
+    </li>
+</ul>

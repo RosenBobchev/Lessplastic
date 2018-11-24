@@ -13,52 +13,57 @@
     <script src="~/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-color">
-        <img src="~/images/46758566_2106303842725855_8669666283278565376_n.jpg" style="max-height:3%; max-width:3%;">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item nav-link">
-                    <a asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Начало<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item nav-link">
-                    <a asp-controller="Articles" asp-action="All"><i class="fas fa-newspaper"></i> Статии</a>
-                </li>
-                <li class="nav-item nav-link">
-                    <a asp-controller="Events" asp-action="All"><i class="fas fa-calendar-alt"></i> Събития</a>
-                </li>
-                <li class="nav-item nav-link">
-                    <a asp-controller="Videos" asp-action="All"><i class="fas fa-video"></i> Видеа</a>
-                </li>
-                <li class="nav-item nav-link">
-                    <a asp-controller="Education" asp-action="All"><i class="fas fa-graduation-cap"></i> Проучвания</a>
-                </li>
-                @if (User.IsInRole("Admin"))
-                {
-                    <li class="nav-item dropdown nav-link">
-                        <a class="text-color dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Админ меню
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Създай статия</a>
-                            <a class="dropdown-item" href="#">Създай събитие</a>
-                            <a class="dropdown-item" href="#">Създай проучване</a>
-                            <a class="dropdown-item" href="#">Създай видео</a>
-                        </div>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-color">
+            <img src="~/images/46758566_2106303842725855_8669666283278565376_n.jpg" style="max-height:3%; max-width:3%;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item nav-link">
+                        <a asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Начало<span class="sr-only">(current)</span></a>
                     </li>
-                }
-            </ul>
-            @await Html.PartialAsync("_LoginPartial")
+                    <li class="nav-item nav-link">
+                        <a asp-controller="Articles" asp-action="All"><i class="fas fa-newspaper"></i> Статии</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        <a asp-controller="Events" asp-action="All"><i class="fas fa-calendar-alt"></i> Събития</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        <a asp-controller="Videos" asp-action="All"><i class="fas fa-video"></i> Видеа</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        <a asp-controller="Education" asp-action="All"><i class="fas fa-graduation-cap"></i> Проучвания</a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item dropdown nav-link">
+                            <a class="text-color dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Админ меню
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a asp-area="Admin" asp-controller="Articles" asp-action="Create" class="dropdown-item">Създай статия</a>
+                                <a class="dropdown-item" href="#">Създай събитие</a>
+                                <a class="dropdown-item" href="#">Създай проучване</a>
+                                <a class="dropdown-item" href="#">Създай видео</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                @await Html.PartialAsync("_LoginPartial")
+            </div>
+        </nav>
+        <div class="container body-content">
+            @RenderBody()
+            <footer>
+                <div class="container-fluid lessplastic-bg-color">
+                    <div class="text-center text-color">
+                        &copy; CopyRight Sanity Web Design Studios 2018. All rights reserved.
+                    </div>
+                </div>
+            </footer>
         </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2018 - Lessplastic</p>
-        </footer>
     </div>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"

@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using LessplasticWebApp.Data;
 using Lessplastic.Models;
 using LessplasticWebApp.Utilities;
+using Lessplastic.Services.Contracts;
+using Lessplastic.Services;
 
 namespace LessplasticWebApp
 {
@@ -54,6 +56,8 @@ namespace LessplasticWebApp
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddScoped<IArticleService, ArticleService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -81,6 +85,10 @@ namespace LessplasticWebApp
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                  name: "areas",
+                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

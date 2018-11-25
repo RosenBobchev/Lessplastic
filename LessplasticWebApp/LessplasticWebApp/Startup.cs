@@ -57,6 +57,7 @@ namespace LessplasticWebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IArticleService, ArticleService>();
+            services.AddScoped<IEventService, EventService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

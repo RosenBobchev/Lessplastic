@@ -11,6 +11,10 @@ a {
     color: black;
 }
 
+.hr-2 {
+    height: 2px;
+}
+
 .text-black{
     color:black;
 }

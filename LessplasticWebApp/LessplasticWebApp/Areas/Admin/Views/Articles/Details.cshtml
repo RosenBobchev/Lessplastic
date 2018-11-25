@@ -1,0 +1,39 @@
+﻿@model Lessplastic.Models.ViewModels.Articles.DetailsArticleViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<form class="mx-auto half-width" asp-area="Admin" asp-controller="Articles" asp-action="Details" asp-route-id="@Model.Id" method="post">
+    <p class="text-center">@Model.Title</p>
+    <img src=@Model.ArticleImage width="600" height="300" />
+    <textarea rows="10" cols="80">@Model.Content</textarea>
+    <img src=@Model.ContentImage width="600" height="300" />
+    @if (@Model.AdditionalContent != null)
+    {
+        <textarea rows="10" cols="80">@Model.AdditionalContent</textarea>
+    }
+    <br />
+    @if (Model.AdditionalContentImage != null)
+    {
+        <img src=@Model?.AdditionalContentImage width="600" height="300" />
+    }
+    <h3 class="text-center">@Model.CreatedOn</h3>
+    <h3 class="text-center">@Model.Views</h3>
+    @foreach (var comment in Model.Comments)
+    {
+        <div>
+            <p>comment</p>
+        </div>
+    }
+    <hr class="hr-2 bg-dark" />
+    <h3 class="text-center">Действия</h3>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-area="Admin" asp-controller="Articles" asp-action="Edit" asp-route-id="@Model.Id" class="btn bg-color">Промени</a>
+        <a asp-area="Admin" asp-controller="Articles" asp-action="Delete" asp-route-id="@Model.Id" class="btn bg-color">Изтрии</a>
+    }
+    <br />
+    <br />
+    <br />
+    <br />
+</form>

@@ -1,0 +1,36 @@
+﻿@model Lessplastic.Models.ViewModels.Articles.UpdateDeleteArticleViewModel
+
+@{
+    ViewData["Title"] = "_FormArticlePartial";
+}
+
+<div class="form-group">
+    <label asp-for="Title" class="control-label">Заглавие</label>
+    <input asp-for="Title" value="@Model?.Title" disabled="@Model?.DisabledValue" class="form-control" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ArticleImage" class="control-label">Снимка на статията</label>
+    <input asp-for="ArticleImage" value="@Model?.ArticleImage" disabled="@Model?.DisabledValue" class="form-control" />
+    <span asp-validation-for="ArticleImage" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Content" class="control-label">Съдържание</label>
+    <textarea asp-for="Content" value="@Model?.Content" disabled="@Model?.DisabledValue" class="form-control" rows="5" cols="40"></textarea>
+    <span asp-validation-for="Content" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ContentImage" class="control-label">Снимка на съдържанието</label>
+    <input asp-for="ContentImage" value="@Model?.ContentImage" disabled="@Model?.DisabledValue" class="form-control" />
+    <span asp-validation-for="ContentImage" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="AdditionalContent" class="control-label">Допълнително съдържание</label>
+    <textarea asp-for="AdditionalContent" value="@Model?.AdditionalContent" disabled="@Model?.DisabledValue" class="form-control" rows="5" cols="40"></textarea>
+    <span asp-validation-for="AdditionalContent" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="AdditionalContentImage" class="control-label">Допълнителна снимка</label>
+    <input asp-for="AdditionalContentImage" value="@Model?.AdditionalContentImage" disabled="@Model?.DisabledValue" class="form-control" />
+    <span asp-validation-for="AdditionalContentImage" class="text-danger"></span>
+</div>

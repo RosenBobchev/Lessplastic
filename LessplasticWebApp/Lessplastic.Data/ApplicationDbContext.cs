@@ -52,11 +52,6 @@ namespace LessplasticWebApp.Data
                  .WithMany(e => e.Events)
                  .HasForeignKey(e => e.TownId)
                  .OnDelete(DeleteBehavior.Restrict);
-                
-                x.HasOne(e => e.Event)
-                 .WithMany(e => e.Towns)
-                 .HasForeignKey(e => e.EventId)
-                 .OnDelete(DeleteBehavior.Restrict);
             });
 
             base.OnModelCreating(builder);

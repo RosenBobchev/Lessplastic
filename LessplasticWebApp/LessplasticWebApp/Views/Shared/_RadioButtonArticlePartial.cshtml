@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "_RadioButtonArticlePartial";
+}
+
+<h4 class="text-center">Вид на статията</h4>
+<hr class="bg-secondary w-50" />
+<div class="row justify-content-around">
+    <div class="row justify-content-around">
+        @{
+            var types = new[] { "Regular", "Science" };
+        }
+        @foreach (var type in types)
+        {
+            var bgText = string.Empty;
+            if (type == "Regular")
+            {
+                bgText = "Нормална";
+            }
+            else
+            {
+                bgText = "Научна";
+            }
+            <div class="col-md-2">
+                <input id="@type" type="radio" disabled="@Model?.DisabledValue" name="type" value="@type" checked="@(Model?.Type.ToString() == type ? "checked" : null)" />
+                <label for="@type">@bgText</label>
+            </div>
+        }
+    </div>
+</div>
+<hr />

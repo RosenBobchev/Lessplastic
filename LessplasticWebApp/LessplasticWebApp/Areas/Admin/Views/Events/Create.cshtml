@@ -1,0 +1,34 @@
+﻿@model Lessplastic.Models.ViewModels.Events.EventViewModel
+
+@{
+    ViewData["Title"] = "Създай събитие";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+<form asp-action="Create" class="mx-auto half-width">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Towns" class="control-label"></label>
+        <input asp-for="Towns" class="form-control" />
+        <span asp-validation-for="Towns" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EventDate" class="control-label"></label>
+        <input asp-for="EventDate" class="form-control" />
+        <span asp-validation-for="EventDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</form>

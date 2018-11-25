@@ -43,13 +43,19 @@ namespace Lessplastic.Services
             return true;
         }
 
+        public void IncrementViews(Article article)
+        {
+            article.Views += 1;
+            this.context.SaveChanges();
+        }
+
         public void DeleteArticle(Article article)
         {
             this.context.Articles.Remove(article);
             this.context.SaveChanges();
         }
 
-        public bool EditArticle(Article article, ArticleViewModel model)
+        public bool EditArticle(Article article, UpdateDeleteArticleViewModel model)
         {
             if (!Enum.TryParse(model.Type, out ArticleType articleType))
             {

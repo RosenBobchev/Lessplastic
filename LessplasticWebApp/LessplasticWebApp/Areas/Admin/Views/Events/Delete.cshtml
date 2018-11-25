@@ -1,0 +1,17 @@
+﻿@model Lessplastic.Models.ViewModels.Events.UpdateDeleteEventViewModel
+
+@{
+    ViewData["Title"] = "Изтрий събитие";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+<form class="mx-auto half-width" asp-area="Admin" asp-controller="Events" asp-action="DeleteAction" asp-route-id="@Model.Id" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <partial name="_FormEventPartial"/>
+
+    <div class="form-group text-center">
+        <input type="submit" value="Изтрии" class="btn btn-default" />
+    </div>
+</form>

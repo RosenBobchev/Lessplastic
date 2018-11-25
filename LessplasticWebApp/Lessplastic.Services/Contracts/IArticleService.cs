@@ -11,8 +11,10 @@ namespace Lessplastic.Services.Contracts
 
         bool CreateArticle(ArticleViewModel model);
 
-        bool EditArticle(Article article, ArticleViewModel model);
+        bool EditArticle(Article article, UpdateDeleteArticleViewModel model);
 
         void DeleteArticle(Article article);
+
+        void IncrementViews(Article article);
     }
 }

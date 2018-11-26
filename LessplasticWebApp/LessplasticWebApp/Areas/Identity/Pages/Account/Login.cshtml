@@ -29,29 +29,26 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-default">Вход</button>
-            @{
-                <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                    <div>
-                        <p>
-                            @foreach (var provider in Model.ExternalLogins)
-                            {
-                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                            }
-                        </p>
-                    </div>
-                </form>
-            }
-        </div>
-        <div class="form-group mx-auto half-width">
-            <p>
-                <a asp-page="./ForgotPassword" class="text-black">Забравена парола?</a>
-            </p>
-            <p>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-black">Регистрирай се тук</a>
-            </p>
+            <button type="submit" class="btn btn-color text-color">Вход</button>
         </div>
     </form>
+    @{
+        <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal mx-auto half-width">
+            <div class="form-group">
+                <p>
+                    @foreach (var provider in Model.ExternalLogins)
+                    {
+                        <button type="submit" class="btn btn-color text-color" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="fab fa-facebook-square"></i> @provider.DisplayName</button>
+                    }
+                </p>
+            </div>
+        </form>
+    }
+    <div class="mx-auto half-width">
+        <p>
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-black">Регистрирай се тук като нов потребител!</a>
+        </p>
+    </div>
 </section>
 
 @section Scripts {

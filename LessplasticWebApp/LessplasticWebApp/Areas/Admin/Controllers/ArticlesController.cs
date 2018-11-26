@@ -50,7 +50,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             }
 
             this.articleService.IncrementViews(article);
-
+            
             var model = new DetailsArticleViewModel
             {
                 Id = article.Id,

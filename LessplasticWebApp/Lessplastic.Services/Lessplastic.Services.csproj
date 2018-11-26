@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Lessplastic.Data\Lessplastic.Data.csproj" />
     <ProjectReference Include="..\Lessplastic.Models\Lessplastic.Models.csproj" />
   </ItemGroup>

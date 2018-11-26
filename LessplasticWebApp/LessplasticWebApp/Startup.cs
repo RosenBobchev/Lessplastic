@@ -56,6 +56,13 @@ namespace LessplasticWebApp
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                facebookOptions.Scope.Add("user_hometown");
+            });
+            
             services.AddScoped<IArticleService, ArticleService>();
             services.AddScoped<IEventService, EventService>();
 

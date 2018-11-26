@@ -1,10 +1,11 @@
 ﻿@model Lessplastic.Models.ViewModels.Events.DetailsEventViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Детайли на събитието";
 }
 
-<h2>Детайли на събитието</h2>
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr class="bg-dark"/>
 
 <form class="mx-auto half-width" asp-area="Admin" asp-controller="Events" asp-action="Details" asp-route-id="@Model.Id" method="post">
     <p>@Model.Name</p>
@@ -14,5 +15,17 @@
     @foreach (var town in Model.Towns)
     {
         <p>@town.Town.TownName</p>
+    }
+    <hr class="hr-2 bg-dark"/>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row col-md-12">
+            <div class="col-md-10">
+                <a asp-area="Admin" asp-controller="Events" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-color text-color">Промени</a>
+            </div>
+            <div class="col-md-2">
+                <a asp-area="Admin" asp-controller="Events" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-color text-color">Изтрии</a>
+            </div>
+        </div>
     }
 </form>

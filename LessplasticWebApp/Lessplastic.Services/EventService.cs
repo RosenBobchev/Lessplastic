@@ -2,6 +2,7 @@
 using Lessplastic.Models.ViewModels.Events;
 using Lessplastic.Services.Contracts;
 using LessplasticWebApp.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,8 @@ namespace Lessplastic.Services
                         Event = myEvent,
                         Town = townExists
                     };
-                    
+
+                    myEvent.Towns.Add(eventTowns);
                     this.context.EventsTowns.Add(eventTowns);
                     this.context.SaveChanges();
                 }
@@ -55,7 +57,8 @@ namespace Lessplastic.Services
                         Event = myEvent,
                         Town = townForEvent
                     };
-                    
+
+                    myEvent.Towns.Add(eventTowns);
                     this.context.Towns.Add(townForEvent);
                     this.context.EventsTowns.Add(eventTowns);
                     this.context.SaveChanges();
@@ -80,14 +83,21 @@ namespace Lessplastic.Services
 
         public Event GetEvent(int id)
         {
-            var myEvent = this.context.Events.FirstOrDefault(x => x.Id == id);
+            var myEvent = this.context.Events.Include(x => x.Participants).Include(x => x.Towns).FirstOrDefault(x => x.Id == id);
 
             return myEvent;
         }
 
+        public EventTowns[] GetDetailsEvent(int id)
+        {
+            var myEventTowns = this.context.EventsTowns.Include(x => x.Town).Where(x => x.EventId == id).ToArray();
+
+            return myEventTowns;
+        }
+
         public Event[] GetEvents()
         {
-            var myEvents = this.context.Events.ToArray();
+            var myEvents = this.context.Events.Include(x => x.Participants).Include(x => x.Towns).ToArray();
 
             return myEvents;
         }

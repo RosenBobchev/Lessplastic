@@ -9,7 +9,7 @@
     </li>
     @if (hasExternalLogins)
     {
-        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins">Фейсбук</a></li>
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a id="external-login" asp-page="./ExternalLogins" class="text-black">Фейсбук</a></li>
     }
     <li class="@ManageNavPages.PersonalDataNavClass(ViewContext)">
         <a asp-page="./PersonalData" class="text-black">Лична информация</a>

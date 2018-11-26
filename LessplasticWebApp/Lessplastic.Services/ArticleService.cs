@@ -3,6 +3,7 @@ using Lessplastic.Models.Enums;
 using Lessplastic.Models.ViewModels.Articles;
 using Lessplastic.Services.Contracts;
 using LessplasticWebApp.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
@@ -36,7 +37,6 @@ namespace Lessplastic.Services
                 CreatedOn = DateTime.Now,
                 Views = 0,
             };
-
             this.context.Articles.Add(article);
             this.context.SaveChanges();
 
@@ -76,14 +76,14 @@ namespace Lessplastic.Services
 
         public Article GetArticle(int id)
         {
-            var article = this.context.Articles.FirstOrDefault(a => a.Id == id);
+            var article = this.context.Articles.Include(x => x.Comments).FirstOrDefault(a => a.Id == id);
 
             return article;
         }
 
         public Article[] GetArticles()
         {
-            var articles = this.context.Articles.ToArray();
+            var articles = this.context.Articles.Include(x => x.Comments).ToArray();
 
             return articles;
         }

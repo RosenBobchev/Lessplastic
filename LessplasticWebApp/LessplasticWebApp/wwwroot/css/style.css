@@ -11,6 +11,10 @@ a {
     color: black;
 }
 
+.btn-color {
+    background-color: deepskyblue;
+}
+
 .hr-2 {
     height: 2px;
 }

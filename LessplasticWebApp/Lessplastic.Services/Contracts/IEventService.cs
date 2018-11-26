@@ -18,6 +18,8 @@ namespace Lessplastic.Services.Contracts
 
         void DeleteEvent(Event myEvent);
 
+        EventTowns[] GetDetailsEvent(int id);
+
         void IncrementParticipants(Event myEvent);
     }
 }

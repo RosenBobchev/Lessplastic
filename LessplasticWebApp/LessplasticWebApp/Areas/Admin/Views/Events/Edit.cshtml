@@ -4,14 +4,14 @@
     ViewData["Title"] = "Промени събитие";
 }
 
-<h2 class="text-Center">@ViewData["Title"]</h2>
+<h2 class="text-center">@ViewData["Title"]</h2>
 <hr />
 <form class="mx-auto half-width" asp-area="Admin" asp-controller="Events" asp-action="Edit" asp-route-id="@Model.Id" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <partial name="_FormEventPartial" />
 
-    <div class="form-group">
-        <input type="submit" value="Промени" class="btn btn-default" />
+    <div class="form-group text-center">
+        <input type="submit" value="Промени" class="btn btn-color text-color" />
     </div>
 </form>

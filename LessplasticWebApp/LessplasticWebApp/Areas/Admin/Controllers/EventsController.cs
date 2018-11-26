@@ -84,6 +84,8 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Details(int id)
         {
+            var myEventDetails = this.eventService.GetDetailsEvent(id);
+
             var myEvent = this.eventService.GetEvent(id);
 
             if (myEvent == null)
@@ -98,7 +100,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
                 Description = myEvent.Description,
                 EventDate = myEvent.EventDate,
                 Participants = myEvent.Participants,
-                Towns = myEvent.Towns,
+                Towns = myEventDetails,
             };
 
             return this.View(model);

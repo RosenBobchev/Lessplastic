@@ -19,7 +19,7 @@ namespace Lessplastic.Services
             this.context = context;
         }
 
-        public void CreateEvent(EventViewModel model)
+        public int CreateEvent(EventViewModel model)
         {
             var towns = model.Towns.Split(", ", StringSplitOptions.RemoveEmptyEntries);
             
@@ -64,6 +64,10 @@ namespace Lessplastic.Services
                     this.context.SaveChanges();
                 }
             }
+
+            var id = myEvent.Id;
+
+            return id;
         }
 
         public void DeleteEvent(Event myEvent)
@@ -102,9 +106,28 @@ namespace Lessplastic.Services
             return myEvents;
         }
 
-        public void IncrementParticipants(Event myEvent)
+        public bool AddParticipant(Event myEvent, string username)
         {
-            throw new NotImplementedException();
+            LessplasticUser user = (LessplasticUser)this.context.Users.FirstOrDefault(x => x.UserName == username);
+            
+            if (user == null)
+            {
+                return false;
+            }
+
+            var userEvent = new UserEvents
+            {
+                EventId = myEvent.Id,
+                Event = myEvent,
+                LessplasticUserId = user.Id,
+                LessplasticUser = user
+            };
+
+            user.Events.Add(userEvent);
+            myEvent.Participants.Add(userEvent);
+
+            this.context.SaveChanges();
+            return true;
         }
     }
 }

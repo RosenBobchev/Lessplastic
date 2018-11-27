@@ -1,0 +1,32 @@
+﻿@model Lessplastic.Models.ViewModels.Educations.UpdateDeleteEducationViewModel
+
+@{
+    ViewData["Title"] = "_FormEducaionPartial";
+}
+
+
+<div class="form-group">
+    <label asp-for="Title" class="control-label"></label>
+    <input asp-for="Title" value="@Model?.Title" disabled="@Model?.DisabledValue" class="form-control" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Content" class="control-label"></label>
+    <textarea asp-for="Content" value="@Model?.Content" disabled="@Model?.DisabledValue" class="form-control" rows="5" cols="40"></textarea>
+    <span asp-validation-for="Content" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ImageUrl" class="control-label"></label>
+    <input asp-for="ImageUrl" value="@Model?.ImageUrl" disabled="@Model?.DisabledValue" class="form-control" />
+    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="AdditionalContent" class="control-label"></label>
+    <textarea asp-for="AdditionalContent" value="@Model?.AdditionalContent" disabled="@Model?.DisabledValue" class="form-control" rows="5" cols="40"></textarea>
+    <span asp-validation-for="AdditionalContent" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="AdditionalContentImage" class="control-label"></label>
+    <input asp-for="AdditionalContentImage" value="@Model?.AdditionalContentImage" disabled="@Model?.DisabledValue"class="form-control" />
+    <span asp-validation-for="AdditionalContentImage" class="text-danger"></span>
+</div>

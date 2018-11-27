@@ -34,9 +34,9 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
                 return this.View(model);
             }
 
-            this.eventService.CreateEvent(model);
+            var id = this.eventService.CreateEvent(model);
 
-            return this.Redirect("/");
+            return this.Redirect("/Admin/Events/Details?id=" + id);
         }
 
         [Authorize(Roles = "Admin")]
@@ -60,7 +60,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             return this.View(model);
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Edit(UpdateDeleteEventViewModel model)
         {
@@ -140,8 +140,30 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             }
 
             this.eventService.DeleteEvent(myEvent);
-            
+
             return this.Redirect("/");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult AddParticipant(int id)
+        {
+            var myEvent = this.eventService.GetEvent(id);
+
+            if (myEvent == null)
+            {
+                return this.Redirect("/");
+            }
+
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/");
+            }
+
+            var user = this.User.Identity.Name;
+
+            this.eventService.AddParticipant(myEvent, user);
+
+            return this.Redirect("/Admin/Events/Details?id=" + id);
         }
     }
 }

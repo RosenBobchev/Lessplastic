@@ -1,0 +1,34 @@
+﻿@model Lessplastic.Models.ViewModels.Videos.DetailsVideoViewModel
+
+@{
+    ViewData["Title"] = "Детайли";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr class="bg-dark" />
+
+<form asp-area="Admin" asp-controller="Videos" asp-action="Details" asp-route-id="@Model.Id" method="post">
+    <div class="row">
+        <div class="col-6">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@Model.YoutubeLink" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-6">
+            <p class="text-primary text-center">@Model.Title</p>
+            <p class="text-primary text-center">@Model.Description Views</p>
+        </div>
+    </div>
+</form>
+<hr class="hr-2 bg-dark" />
+@if (User.IsInRole("Admin"))
+{
+    <div class="row col-md-12">
+        <div class="col-md-10">
+            <a asp-area="Admin" asp-controller="Videos" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-color text-color">Промени</a>
+        </div>
+        <div class="col-md-2">
+            <a asp-area="Admin" asp-controller="Videos" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-color text-color">Изтрии</a>
+        </div>
+    </div>
+}

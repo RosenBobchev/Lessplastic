@@ -1,0 +1,35 @@
+﻿@model Lessplastic.Models.ViewModels.Educations.DetailsEducationViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr class="bg-dark" />
+<form asp-area="Admin" asp-controller="Videos" asp-action="Details" asp-route-id="@Model.Id" method="post">
+    <p class="text-center">@Model.Title</p>
+    <p class="text-center">@Model.Content</p>
+    <img src=@Model.ImageUrl width="600" height="300" />
+    @if (Model.AdditionalContent != null)
+    {
+        <p class="text-center">@Model.AdditionalContent</p>
+    }
+    @if (Model.AdditionalContentImage != null)
+    {
+        <img src=@Model.AdditionalContentImage width="600" height="300" />
+    }
+</form>
+<hr class="hr-2 bg-dark" />
+@if (User.IsInRole("Admin"))
+{
+    <div class="row col-md-12">
+        <div class="col-md-10">
+            <a asp-area="Admin" asp-controller="Educations" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-color text-color">Промени</a>
+        </div>
+        <div class="col-md-2">
+            <a asp-area="Admin" asp-controller="Educations" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-color text-color">Изтрии</a>
+        </div>
+    </div>
+}
+<br />
+<br />

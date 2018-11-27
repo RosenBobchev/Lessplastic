@@ -1,0 +1,17 @@
+﻿@model Lessplastic.Models.ViewModels.Videos.UpdateDeleteVideoViewModel
+
+@{
+    ViewData["Title"] = "Редактирай видео";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+<form class="mx-auto half-width" asp-area="Admin" asp-controller="Videos" asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <partial name="_FormVideoPartial" />
+
+    <div class="form-group text-center">
+        <input type="submit" value="Промени" class="btn btn-color text-color" />
+    </div>
+</form>

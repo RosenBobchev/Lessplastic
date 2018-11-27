@@ -12,7 +12,7 @@ namespace Lessplastic.Services.Contracts
 
         Event[] GetEvents();
 
-        void CreateEvent(EventViewModel model);
+        int CreateEvent(EventViewModel model);
 
         void EditEvent(Event myEvent, UpdateDeleteEventViewModel model);
 
@@ -20,6 +20,6 @@ namespace Lessplastic.Services.Contracts
 
         EventTowns[] GetDetailsEvent(int id);
 
-        void IncrementParticipants(Event myEvent);
+        bool AddParticipant(Event myEvent, string username);
     }
 }

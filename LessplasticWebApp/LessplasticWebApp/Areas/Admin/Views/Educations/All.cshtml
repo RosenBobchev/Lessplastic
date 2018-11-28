@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Lessplastic.Models.ViewModels.Educations.AllEducationsViewModel>
+
+@{
+    ViewData["Title"] = "Проучвания";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr class="bg-dark"/>
+@foreach (var education in Model)
+{
+    <div class="card row col-md-10 ml-auto mr-auto">
+        <div class="card-body">
+            <h5 class="card-title text-center">@education.Title</h5>
+            <img class="card-img-top" src="@education.ImageUrl" width="710" height="400">
+            <p class="card-text">@education.ShortContent</p>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-7">
+                <a asp-area="Admin" asp-controller="Educations" asp-action="Details" asp-route-id="@education.Id" class="btn btn-color text-color">Прочети повече</a>
+            </div>
+            <div class="col-md-4">
+                <a href="@education.DownloadLink" class="btn btn-color text-color">Изтегли проучването от тук!</a>
+            </div>
+        </div>
+        <br />
+    </div>
+    <br />
+}
+<br />

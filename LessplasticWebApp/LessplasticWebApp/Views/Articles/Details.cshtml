@@ -4,7 +4,6 @@
     ViewData["Title"] = "Details";
 }
 <p class="text-center">@Model.Title</p>
-<br />
 <img src=@Model.ArticleImage width="600" height="300" />
 <br />
 <text class="text-center">@Model.Content</text>
@@ -17,7 +16,8 @@
 {
     <img src=@Model?.AdditionalContentImage width="600" height="300" />
 }
-<h3 class="text-center">@Model.CreatedOn</h3>
+<br />
+<h3 class="text-center">@Model.CreatedOn.ToShortDateString()</h3>
 <h3 class="text-center">@Model.Views</h3>
 @foreach (var comment in Model.Comments)
 {

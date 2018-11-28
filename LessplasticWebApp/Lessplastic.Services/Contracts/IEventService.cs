@@ -18,7 +18,9 @@ namespace Lessplastic.Services.Contracts
 
         void DeleteEvent(Event myEvent);
 
-        EventTowns[] GetDetailsEvent(int id);
+        EventTowns[] GetEventTowns(int id);
+
+        UserEvents[] GetEventParticipants(int id);
 
         bool AddParticipant(Event myEvent, string username);
     }

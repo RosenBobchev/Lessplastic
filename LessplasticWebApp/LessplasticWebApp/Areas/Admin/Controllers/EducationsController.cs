@@ -145,5 +145,29 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             return this.Redirect("/");
         }
+        
+        [Authorize(Roles = "Admin")]
+        public IActionResult All()
+        {
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/");
+            }
+
+            var educations = this.educationService.GetEducations();
+
+            var model = educations.Select(x => new AllEducationsViewModel
+            {
+                Id = x.Id,
+                Content = x.Content,
+                ImageUrl = x.ImageUrl,
+                Title = x.Title,
+                AdditionalContent = x.AdditionalContent,
+                AdditionalContentImage = x.AdditionalContentImage,
+                DownloadLink = x.DownloadLink,
+            }).ToArray();
+
+            return this.View(model);
+        }
     }
 }

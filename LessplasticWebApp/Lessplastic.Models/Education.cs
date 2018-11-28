@@ -17,5 +17,7 @@ namespace Lessplastic.Models
         public string AdditionalContent { get; set; }
 
         public string AdditionalContentImage { get; set; }
+
+        public string DownloadLink { get; set; }
     }
 }

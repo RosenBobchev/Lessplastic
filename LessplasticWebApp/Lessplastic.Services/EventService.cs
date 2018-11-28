@@ -92,11 +92,18 @@ namespace Lessplastic.Services
             return myEvent;
         }
 
-        public EventTowns[] GetDetailsEvent(int id)
+        public EventTowns[] GetEventTowns(int id)
         {
             var myEventTowns = this.context.EventsTowns.Include(x => x.Town).Where(x => x.EventId == id).ToArray();
 
             return myEventTowns;
+        }
+
+        public UserEvents[] GetEventParticipants(int id)
+        {
+            var myEventParticipants = this.context.UsersEvents.Include(x => x.LessplasticUser).Where(x => x.EventId == id).ToArray();
+
+            return myEventParticipants;
         }
 
         public Event[] GetEvents()
@@ -108,7 +115,7 @@ namespace Lessplastic.Services
 
         public bool AddParticipant(Event myEvent, string username)
         {
-            LessplasticUser user = (LessplasticUser)this.context.Users.FirstOrDefault(x => x.UserName == username);
+            LessplasticUser user = this.context.Users.FirstOrDefault(x => x.UserName == username);
             
             if (user == null)
             {

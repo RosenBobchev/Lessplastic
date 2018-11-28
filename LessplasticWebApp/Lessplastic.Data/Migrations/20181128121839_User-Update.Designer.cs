@@ -4,14 +4,16 @@ using LessplasticWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lessplastic.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181128121839_User-Update")]
+    partial class UserUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,8 +84,6 @@ namespace Lessplastic.Data.Migrations
                     b.Property<string>("AdditionalContentImage");
 
                     b.Property<string>("Content");
-
-                    b.Property<string>("DownloadLink");
 
                     b.Property<string>("ImageUrl");
 
@@ -371,7 +371,7 @@ namespace Lessplastic.Data.Migrations
                     b.HasOne("Lessplastic.Models.Event", "Event")
                         .WithMany("Participants")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Lessplastic.Models.LessplasticUser", "LessplasticUser")
                         .WithMany("Events")

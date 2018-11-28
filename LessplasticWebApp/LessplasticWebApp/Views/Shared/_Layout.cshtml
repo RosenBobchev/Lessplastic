@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item nav-link">
-                        <a asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Начало<span class="sr-only">(current)</span></a>
+                        <a href="/"><i class="fas fa-home"></i> Начало<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item nav-link">
                         <a asp-controller="Articles" asp-action="All"><i class="fas fa-newspaper"></i> Статии</a>
@@ -34,7 +34,7 @@
                         <a asp-controller="Videos" asp-action="All"><i class="fas fa-video"></i> Видеа</a>
                     </li>
                     <li class="nav-item nav-link">
-                        <a asp-controller="Education" asp-action="All"><i class="fas fa-graduation-cap"></i> Проучвания</a>
+                        <a asp-controller="Educations" asp-action="All"><i class="fas fa-graduation-cap"></i> Проучвания</a>
                     </li>
                     @if (User.IsInRole("Admin"))
                     {

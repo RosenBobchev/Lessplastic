@@ -15,6 +15,7 @@
 {
     <p>@town.Town.TownName</p>
 }
+
 @if (User.Identity.IsAuthenticated)
 {
     <div class="row col-md-6">
@@ -45,6 +46,6 @@
         </div>
     }
     <div class="mx-auto">
-        <a asp-area="Admin" asp-controller="Events" asp-action="All" class="btn btn-color text-color">Назад</a>
+        <a asp-controller="Events" asp-action="All" class="btn btn-color text-color">Назад</a>
     </div>
 </div>

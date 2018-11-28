@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lessplastic.Data", "Lesspla
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lessplastic.Models", "Lessplastic.Models\Lessplastic.Models.csproj", "{F1B50271-64BE-48BC-B020-7A4B6CBBBECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lessplastic.Services", "Lessplastic.Services\Lessplastic.Services.csproj", "{7E95920A-7D39-4032-83AF-7187DA08B18C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lessplastic.Services", "Lessplastic.Services\Lessplastic.Services.csproj", "{7E95920A-7D39-4032-83AF-7187DA08B18C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -84,7 +84,9 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Details(int id)
         {
-            var myEventDetails = this.eventService.GetDetailsEvent(id);
+            var myEventTowns = this.eventService.GetEventTowns(id);
+
+            var myEventParticipants = this.eventService.GetEventParticipants(id);
 
             var myEvent = this.eventService.GetEvent(id);
 
@@ -99,8 +101,8 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
                 Name = myEvent.Name,
                 Description = myEvent.Description,
                 EventDate = myEvent.EventDate,
-                Participants = myEvent.Participants,
-                Towns = myEventDetails,
+                Participants = myEventParticipants,
+                Towns = myEventTowns,
             };
 
             return this.View(model);
@@ -164,6 +166,21 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.eventService.AddParticipant(myEvent, user);
 
             return this.Redirect("/Admin/Events/Details?id=" + id);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult All()
+        {
+            var events = this.eventService.GetEvents();
+
+            var model = events.Select(x => new AllEventsViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+            }).ToArray();
+
+            return this.View(model);
         }
     }
 }

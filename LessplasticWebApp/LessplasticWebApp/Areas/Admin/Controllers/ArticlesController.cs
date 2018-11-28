@@ -42,6 +42,8 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Details(int id)
         {
+            var comments = this.articleService.GetComments(id);
+
             var article = this.articleService.GetArticle(id);
 
             if (article == null)
@@ -63,7 +65,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
                 AdditionalContentImage = article.AdditionalContentImage,
                 CreatedOn = article.CreatedOn,
                 Views = article.Views,
-                Comments = article.Comments
+                Comments = comments,
             };
 
             return this.View(model);
@@ -155,6 +157,22 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.articleService.DeleteArticle(article);
 
             return this.Redirect("/");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult All()
+        {
+            var articles = this.articleService.GetArticles();
+
+            var model = articles.Select(x => new AllArticleViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                ArticleImage = x.ArticleImage,
+                Content = x.Content,
+            }).ToArray();
+
+            return this.View(model);
         }
     }
 }

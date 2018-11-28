@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LessplasticWebApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<LessplasticUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -33,11 +33,6 @@ namespace LessplasticWebApp.Data
             {
                 x.HasKey(e => new { e.EventId, e.LessplasticUserId });
                 
-                x.HasOne(e => e.Event)
-                 .WithMany(e => e.Participants)
-                 .HasForeignKey(e => e.EventId)
-                 .OnDelete(DeleteBehavior.Restrict);
-
                 x.HasOne(e => e.LessplasticUser)
                  .WithMany(e => e.Events)
                  .HasForeignKey(e => e.LessplasticUserId)

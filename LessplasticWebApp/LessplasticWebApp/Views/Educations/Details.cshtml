@@ -1,7 +1,7 @@
 ﻿@model Lessplastic.Models.ViewModels.Educations.DetailsEducationViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Детайли";
 }
 <h3 class="text-center text-black">@Model.Title</h3>
 <text class="text-center">@Model.Content</text>
@@ -14,6 +14,7 @@
 {
     <img src=@Model.AdditionalContentImage width="600" height="300" />
 }
+<br />
 <hr class="hr-2 bg-dark" />
 <div class="row">
     @if (User.IsInRole("Admin"))
@@ -26,7 +27,7 @@
         </div>
     }
     <div class="mx-auto">
-        <a asp-area="Admin" asp-controller="Educations" asp-action="All" class="btn btn-color text-color">Назад</a>
+        <a asp-controller="Educations" asp-action="All" class="btn btn-color text-color">Назад</a>
     </div>
 </div>
 <br />

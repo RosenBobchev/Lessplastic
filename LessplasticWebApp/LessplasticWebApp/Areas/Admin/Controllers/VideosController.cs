@@ -2,6 +2,7 @@
 using Lessplastic.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace LessplasticWebApp.Areas.Admin.Controllers
 {
@@ -134,6 +135,24 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.videoService.DeleteVideo(video);
 
             return this.Redirect("/");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult All()
+        {
+            var videos = this.videoService.GetVideos();
+
+            var model = videos.Select(x => new AllVideosViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Description = x.Description,
+                ShortDescription = x.Description?.Length > 50 ?
+                                   x.Description?.Substring(0, 50) : x.Description,
+                YoutubeLink = x.YoutubeLink,
+            }).ToArray();
+
+            return this.View(model);
         }
     }
 }

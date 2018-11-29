@@ -6,6 +6,70 @@
 a {
     color: #F8F8FF;
 }
+
+.dropbtn {
+    background-color: deepskyblue;
+    color: white;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display:none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    background-color:white;
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: white;
+}
+
+.dropdown:hover .dropdown-content {
+    display:block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: deepskyblue;
+}
+
+body {
+    background-image: url("../images/438394.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+    height: auto;
+}
+
+.xeon-color {
+    background-color: deepskyblue;
+}
+
+.hr-xeon {
+    background-color: deepskyblue;
+    height: 2px;
+}
+
+.hr-xeon-white {
+    background-color: white;
+    height: 1px;
+}
+
 .lessplastic-bg-color {
     background-color: deepskyblue;
     color: black;
@@ -19,16 +83,16 @@ a {
     height: 2px;
 }
 
-.text-black{
-    color:black;
+.text-black {
+    color: black;
 }
 
 .button-margin {
     margin-top: 8px;
 }
 
-.logout-margin{
-    margin-right:0px;
+.logout-margin {
+    margin-right: 0px;
 }
 
 .half-width {
@@ -40,11 +104,12 @@ textarea {
 }
 
 .bg-color {
-    background-color:deepskyblue;
+    background-color: deepskyblue;
     color: black;
 }
-.navbar-text{
-    text-emphasis-color:black;
+
+.navbar-text {
+    text-emphasis-color: black;
 }
 
 .nav-link-dark {
@@ -59,28 +124,22 @@ textarea {
     height: 1px;
 }
 
-.table-hover>tbody>tr:hover {
+.table-hover > tbody > tr:hover {
     background-color: #DC143C;
     color: #F8F8FF;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    border: 0;
-    width: 98%;
-}
-.ml-auto{
+.ml-auto {
     left: auto !important;
     right: 0px;
 }
 
-.text-color{
-    color:white;
+.text-color {
+    color: white;
 }
 
-.text-color-login{
-    color:black;
+.text-color-login {
+    color: black;
 }
 
 .navbarSize {
@@ -88,5 +147,5 @@ footer {
     padding-bottom: 0px;
 }
 /*.product {*/
-	/*word-wrap: break-word;*/
+/*word-wrap: break-word;*/
 /*}*/

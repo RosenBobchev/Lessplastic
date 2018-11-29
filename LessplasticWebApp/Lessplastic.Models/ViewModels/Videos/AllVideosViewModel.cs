@@ -12,7 +12,20 @@ namespace Lessplastic.Models.ViewModels.Videos
 
         public string Description { get; set; }
 
-        public string ShortDescription { get; set; }
+        public string ShortDescription
+        {
+            get
+            {
+                if (this.Description?.Length > 25)
+                {
+                    return this.Description.Substring(0, 25) + "...";
+                }
+                else
+                {
+                    return this.Description;
+                }
+            }
+        }
 
         public string YoutubeLink { get; set; }
     }

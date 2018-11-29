@@ -27,8 +27,6 @@ namespace LessplasticWebApp.Controllers
                 Id = x.Id,
                 Title = x.Title,
                 Description = x.Description,
-                ShortDescription = x.Description?.Length > 50 ?
-                                   x.Description?.Substring(0, 50) : x.Description,
                 YoutubeLink = x.YoutubeLink,
             }).ToArray();
 

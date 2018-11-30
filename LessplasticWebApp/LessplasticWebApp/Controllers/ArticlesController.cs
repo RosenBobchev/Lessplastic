@@ -62,7 +62,7 @@ namespace LessplasticWebApp.Controllers
                 ArticleImage = x.ArticleImage,
                 Content = x.Content,
                 DateOnCreation = x.CreatedOn,
-            }).OrderByDescending(x => x.DateOnCreation);
+            }).OrderByDescending(x => x.DateOnCreation).ToList();
 
             return this.View(model);
         }

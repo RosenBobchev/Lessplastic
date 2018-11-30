@@ -28,5 +28,7 @@ namespace Lessplastic.Models.ViewModels.Videos
         }
 
         public string YoutubeLink { get; set; }
+        
+        public DateTime CreatedOn { get; set; }
     }
 }

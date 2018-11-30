@@ -1,4 +1,6 @@
-﻿namespace Lessplastic.Models
+﻿using System;
+
+namespace Lessplastic.Models
 {
     public class Video
     {
@@ -9,5 +11,7 @@
         public string Description { get; set; }
 
         public string YoutubeLink { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

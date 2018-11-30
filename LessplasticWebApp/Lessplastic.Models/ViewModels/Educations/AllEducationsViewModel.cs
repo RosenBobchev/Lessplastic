@@ -1,4 +1,6 @@
-﻿namespace Lessplastic.Models.ViewModels.Educations
+﻿using System;
+
+namespace Lessplastic.Models.ViewModels.Educations
 {
     public class AllEducationsViewModel
     {
@@ -42,6 +44,7 @@
             }
         }
 
+        public DateTime CreatedOn { get; set; }
 
         public string AdditionalContentImage { get; set; }
 

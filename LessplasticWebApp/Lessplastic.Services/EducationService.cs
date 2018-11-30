@@ -25,7 +25,8 @@ namespace Lessplastic.Services
                 ImageUrl = model.ImageUrl,
                 AdditionalContent = model.AdditionalContent,
                 AdditionalContentImage = model.AdditionalContentImage,
-                DownloadLink = model.DownloadLink
+                DownloadLink = model.DownloadLink,
+                CreatedOn = DateTime.Now,
             };
 
             this.context.Educations.Add(education);

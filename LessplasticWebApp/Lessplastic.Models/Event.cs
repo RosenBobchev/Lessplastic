@@ -19,6 +19,8 @@ namespace Lessplastic.Models
 
         public DateTime EventDate { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
         public ICollection<UserEvents> Participants { get; set; }
 
         public ICollection<EventTowns> Towns { get; set; }

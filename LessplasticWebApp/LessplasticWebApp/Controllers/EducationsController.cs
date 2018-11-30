@@ -53,7 +53,9 @@ namespace LessplasticWebApp.Controllers
                 AdditionalContent = x.AdditionalContent,
                 AdditionalContentImage = x.AdditionalContentImage,
                 DownloadLink = x.DownloadLink,
-            });
+                CreatedOn = x.CreatedOn,
+            })
+            .OrderByDescending(x => x.CreatedOn).ToList();
 
             return this.View(model);
         }

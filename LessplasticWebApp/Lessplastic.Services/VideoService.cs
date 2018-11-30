@@ -26,6 +26,7 @@ namespace Lessplastic.Services
                 Title = model.Title,
                 Description = model.Description,
                 YoutubeLink = youtubeLink,
+                CreatedOn = DateTime.Now,
             };
 
             this.context.Videos.Add(video);

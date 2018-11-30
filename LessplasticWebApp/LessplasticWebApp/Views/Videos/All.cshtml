@@ -1,4 +1,4 @@
-﻿@model Lessplastic.Models.ViewModels.Videos.AllVideosViewModel[]
+﻿@model IEnumerable<Lessplastic.Models.ViewModels.Videos.AllVideosViewModel>
 
 @{
     ViewData["Title"] = "Видеа";
@@ -8,18 +8,18 @@
 <hr />
 <div class="container">
     <div class="row col-xs-12">
-        @for (int i = 0; i < Model.Length; i++)
+        @foreach (var video in Model)
         {
             <div class="col-xs-4 mr-3 ml-4">
                 <div>
-                    <a asp-controller="Videos" asp-action="Details" asp-route-id="@Model[i].Id">
-                        <img src="https://img.youtube.com/vi/@Model[i].YoutubeLink/mqdefault.jpg" alt="tube img" />
+                    <a asp-controller="Videos" asp-action="Details" asp-route-id="@video.Id">
+                        <img src="https://img.youtube.com/vi/@video.YoutubeLink/mqdefault.jpg" alt="tube img" />
                     </a>
                 </div>
                 <div>
-                    <a asp-controller="Videos" asp-action="Details" asp-route-id="@Model[i].Id">
-                        <h5 class="text-black">@Model[i].Title</h5>
-                        <h5 class="text-black">@Model[i].ShortDescription</h5>
+                    <a asp-controller="Videos" asp-action="Details" asp-route-id="@video.Id">
+                        <h5 class="text-black">@video.Title</h5>
+                        <h5 class="text-black">@video.ShortDescription</h5>
                     </a>
                 </div>
             </div>

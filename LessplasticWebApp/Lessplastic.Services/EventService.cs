@@ -27,7 +27,8 @@ namespace Lessplastic.Services
             {
                 Name = model.Name,
                 Description = model.Description,
-                EventDate = model.EventDate
+                EventDate = model.EventDate,
+                CreatedOn = DateTime.Now,
             };
 
             foreach (var town in towns)

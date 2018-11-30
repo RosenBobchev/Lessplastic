@@ -26,5 +26,7 @@ namespace Lessplastic.Models.ViewModels.Events
                 }
             }
         }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

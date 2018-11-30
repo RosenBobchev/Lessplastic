@@ -28,7 +28,8 @@ namespace LessplasticWebApp.Controllers
                 Title = x.Title,
                 Description = x.Description,
                 YoutubeLink = x.YoutubeLink,
-            }).ToArray();
+                CreatedOn = x.CreatedOn,
+            }).OrderByDescending(x => x.CreatedOn).ToList();
 
             return this.View(model);
         }

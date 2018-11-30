@@ -52,7 +52,8 @@ namespace LessplasticWebApp.Controllers
                 Id = x.Id,
                 Name = x.Name,
                 Description = x.Description,
-            }).ToArray();
+                CreatedOn = x.CreatedOn,
+            }).OrderByDescending(x => x.CreatedOn).ToList();
 
             return this.View(model);
         }

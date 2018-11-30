@@ -3,22 +3,32 @@
 @{
     ViewData["Title"] = "Details";
 }
-<p class="text-center">@Model.Title</p>
-<img src=@Model.ArticleImage width="600" height="300" />
+<div class="text-center mt-3">
+    <img src=@Model.ArticleImage class="responsive" />
+</div>
 <br />
-<text class="text-center">@Model.Content</text>
+<h1 class="text-center">@Model.Title</h1>
+<div class="row col-md-12">
+    <h5 class="text-center col-md-6">Създадена: @Model.CreatedOn.ToShortDateString()</h5>
+    <h5 class="text-center col-md-6">Прегледи: @Model.Views</h5>
+</div>
 <br />
-<img src=@Model.ContentImage width="600" height="300" />
+<div class="container d-flex justify-content-around">
+    <text>@Model.Content</text>
+</div>
+<div class="text-center mt-3">
+    <img src=@Model.ContentImage class="responsive" />
+</div>
 <br />
-<text class="text-center">@Model.AdditionalContent</text>
-<br />
+<div class="container d-flex justify-content-around">
+    <text>@Model.AdditionalContent</text>
+</div>
 @if (Model.AdditionalContentImage != null)
 {
-    <img src=@Model?.AdditionalContentImage width="600" height="300" />
+    <div class="text-center mt-3">
+        <img src=@Model?.AdditionalContentImage class="responsive" />
+    </div>
 }
-<br />
-<h3 class="text-center">@Model.CreatedOn.ToShortDateString()</h3>
-<h3 class="text-center">@Model.Views</h3>
 @foreach (var comment in Model.Comments)
 {
     <div>
@@ -39,10 +49,7 @@
         </div>
     }
     <div class="mx-auto">
-        <a asp-controller="Articles" asp-action="All" class="btn btn-color text-color">Назад</a>
+        <button onclick="goBack()" class="btn btn-color text-color">Назад</button>
     </div>
 </div>
-<br />
-<br />
-<br />
 <br />

@@ -11,10 +11,15 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
+    <script>
+        function goBack() {
+            window.history.back()
+        }
+    </script>
 </head>
 <body>
     <div class="container pl-0 pr-0" style="background-color:white; height:auto">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-color">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-color sticky-top">
             <img src="~/images/46758566_2106303842725855_8669666283278565376_n.jpg" style="max-height:3%; max-width:3%;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,6 +40,9 @@
                     </li>
                     <li class="nav-item nav-link">
                         <a asp-area="" asp-controller="Educations" asp-action="All"><i class="fas fa-graduation-cap"></i> Проучвания</a>
+                    </li>
+                    <li class="nav-item nav-link">
+                        <a asp-area="" asp-controller="Articles" asp-action="Kids"><i class="fas fa-child"></i> За Деца</a>
                     </li>
                     @if (User.IsInRole("Admin"))
                     {

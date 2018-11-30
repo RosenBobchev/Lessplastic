@@ -4,36 +4,44 @@
     ViewData["Title"] = "Детайли на събитието";
 }
 
-<h2 class="text-center">@ViewData["Title"]</h2>
-<hr class="bg-dark" />
-
-<p>@Model.Name</p>
-<p>@Model.Description</p>
-<p>@Model.Participants.Count</p>
-<p>@Model.EventDate</p>
-@foreach (var town in Model.Towns)
-{
-    <p>@town.Town.TownName</p>
-}
-
-@if (User.Identity.IsAuthenticated)
-{
-    <div class="row col-md-6">
+<h2 class="text-center">@Model.Name</h2>
+<div class="row col-md-12 text-center">
+    <p class="col-md-6">Дата: @Model.EventDate</p>
+    <div class="row col-md-6 mt-2">
         <div class="col-md-4">
             <p>Участници: @Model.Participants.Count</p>
         </div>
-        @if (Model.Participants.Any(x => x.LessplasticUser.UserName == this.User.Identity.Name))
+        @if (User.Identity.IsAuthenticated)
         {
-            <p>Вече сте записан за събитието!</p>
-        }
-        else
-        {
-            <div class="col-md-2">
-                <a asp-area="Admin" asp-controller="Events" asp-action="AddParticipant" asp-route-id="@Model.Id" class="btn btn-color text-color">Присъедини се!</a>
-            </div>
+            @if (Model.Participants.Any(x => x.LessplasticUser.UserName == this.User.Identity.Name))
+            {
+                <p>Вече сте записан за събитието!</p>
+            }
+            else
+            {
+                <div class="col-md-2">
+                    <a asp-area="Admin" asp-controller="Events" asp-action="AddParticipant" asp-route-id="@Model.Id" class="btn btn-color text-color">Присъедини се!</a>
+                </div>
+            }
         }
     </div>
-}
+</div>
+<div class="row col-md-12">
+    <div class="col-md-6">
+        <div class="mt-4">
+            <div class="border border-dark rounded shadow p-2 mb-2 bg-white scroling responsive">@Model.Description</div>
+        </div>
+    </div>
+    <div class="col-md-6 mt-4">
+        <div class="col-xs-2">
+            <p>Градове:</p>
+            @foreach (var town in Model.Towns)
+            {
+                <button type="button" class="btn btn-outline-primary text-color" disabled>@town.Town.TownName</button>
+            }
+        </div>
+    </div>
+</div>
 <hr class="hr-2 bg-dark" />
 <div class="row">
     @if (User.IsInRole("Admin"))
@@ -46,6 +54,7 @@
         </div>
     }
     <div class="mx-auto">
-        <a asp-controller="Events" asp-action="All" class="btn btn-color text-color">Назад</a>
+        <button onclick="goBack()" class="btn btn-color text-color">Назад</button>
     </div>
 </div>
+<br />

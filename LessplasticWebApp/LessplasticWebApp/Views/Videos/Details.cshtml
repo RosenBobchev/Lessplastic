@@ -8,12 +8,14 @@
 <hr class="bg-dark" />
 <div class="row">
     <div class="col-6">
-        <div class="embed-responsive embed-responsive-16by9">
+        <div class="embed-responsive embed-responsive-16by9 ml-2">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@Model.YoutubeLink" allowfullscreen></iframe>
         </div>
     </div>
     <div class="col-6">
-        <p class="text-center">@Model.Description</p>
+        <div class="container d-flex justify-content-aroud">
+            <text>@Model.Description</text>
+        </div>
     </div>
 </div>
 <br />
@@ -29,6 +31,7 @@
         </div>
     }
     <div class="mx-auto">
-        <a asp-controller="Videos" asp-action="All" class="btn btn-color text-color">Назад</a>
+        <button onclick="goBack()" class="btn btn-color text-color">Назад</button>
     </div>
 </div>
+<br />

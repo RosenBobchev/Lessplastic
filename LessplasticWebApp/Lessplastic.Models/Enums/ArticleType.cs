@@ -4,5 +4,6 @@
     {
         Regular = 1,
         Science = 2,
+        Kids,
     }
 }

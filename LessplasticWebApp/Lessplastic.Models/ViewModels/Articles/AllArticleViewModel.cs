@@ -1,4 +1,6 @@
-﻿namespace Lessplastic.Models.ViewModels.Articles
+﻿using System;
+
+namespace Lessplastic.Models.ViewModels.Articles
 {
     public class AllArticleViewModel
     {
@@ -9,7 +11,7 @@
         public string ArticleImage { get; set; }
         
         public string Content { get; set; }
-
+        
         public string ShortContent
         {
             get
@@ -24,5 +26,7 @@
                 }
             }
         }
+
+        public DateTime DateOnCreation { get; set; }
     }
 }

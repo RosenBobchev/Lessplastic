@@ -3,18 +3,22 @@
 @{
     ViewData["Title"] = "Детайли";
 }
-<h3 class="text-center text-black">@Model.Title</h3>
-<text class="text-center">@Model.Content</text>
-<br />
-<img src=@Model.ImageUrl width="600" height="300" />
-<br />
-<text class="text-center">@Model.AdditionalContent</text>
-<br />
+<h3 class="text-center text-black mt-2">@Model.Title</h3>
+<div class="container d-flex justify-content-aroud">
+    <text>@Model.Content</text>
+</div>
+<div class="text-center mt-3 mb-3">
+    <img src=@Model.ImageUrl class="responsive" />
+</div>
+<div class="container d-flex justify-content-aroud">
+    <text>@Model.AdditionalContent</text>
+</div>
 @if (Model.AdditionalContentImage != null)
 {
-    <img src=@Model.AdditionalContentImage width="600" height="300" />
+    <div class="text-center mt-3">
+        <img src=@Model.AdditionalContentImage class="responsive" />
+    </div>
 }
-<br />
 <hr class="hr-2 bg-dark" />
 <div class="row">
     @if (User.IsInRole("Admin"))
@@ -27,8 +31,7 @@
         </div>
     }
     <div class="mx-auto">
-        <a asp-controller="Educations" asp-action="All" class="btn btn-color text-color">Назад</a>
+        <button onclick="goBack()" class="btn btn-color text-color">Назад</button>
     </div>
 </div>
-<br />
 <br />

@@ -40,10 +40,10 @@
     </div>
     <h4 class="text-center">Вид на статията</h4>
     <hr class="bg-secondary w-50" />
-    <div class="row justify-content-around">
-        <div class="row justify-content-around">
+    <div class="row col-md-12">
+        <div class="row col-md-12">
             @{
-                var types = new[] { "Regular", "Science" };
+                var types = new[] { "Regular", "Science", "Kids" };
             }
             @foreach (var type in types)
             {
@@ -52,11 +52,15 @@
                 {
                     bgText = "Нормална";
                 }
-                else
+                if (type == "Science")
                 {
                     bgText = "Научна";
                 }
-                <div class="col-md-2">
+                if(type == "Kids")
+                {
+                    bgText = "За Деца";
+                }
+                <div class="col-md-3 ml-auto">
                     <input id="@type" type="radio" name="type" value="@type" />
                     <label for="@type">@bgText</label>
                 </div>

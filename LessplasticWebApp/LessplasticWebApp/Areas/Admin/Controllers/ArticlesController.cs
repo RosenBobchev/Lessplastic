@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lessplastic.Models.Enums;
 using Lessplastic.Models.ViewModels.Articles;
 using Lessplastic.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -37,38 +38,6 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.articleService.CreateArticle(model);
 
             return this.Redirect("/");
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Details(int id)
-        {
-            var comments = this.articleService.GetComments(id);
-
-            var article = this.articleService.GetArticle(id);
-
-            if (article == null)
-            {
-                return this.Redirect("/");
-            }
-
-            this.articleService.IncrementViews(article);
-            
-            var model = new DetailsArticleViewModel
-            {
-                Id = article.Id,
-                Title = article.Title,
-                ArticleImage = article.ArticleImage,
-                Content = article.Content,
-                ContentImage = article.ContentImage,
-                Type = article.Type.ToString(),
-                AdditionalContent = article.AdditionalContent,
-                AdditionalContentImage = article.AdditionalContentImage,
-                CreatedOn = article.CreatedOn,
-                Views = article.Views,
-                Comments = comments,
-            };
-
-            return this.View(model);
         }
 
         [Authorize(Roles = "Admin")]
@@ -114,7 +83,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             this.articleService.EditArticle(article, model);
 
-            return this.Redirect("/Admin/Articles/Details?id=" + model.Id);
+            return this.Redirect("/Articles/Details?id=" + model.Id);
         }
 
         [Authorize(Roles = "Admin")]
@@ -157,22 +126,6 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.articleService.DeleteArticle(article);
 
             return this.Redirect("/");
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult All()
-        {
-            var articles = this.articleService.GetArticles();
-
-            var model = articles.Select(x => new AllArticleViewModel
-            {
-                Id = x.Id,
-                Title = x.Title,
-                ArticleImage = x.ArticleImage,
-                Content = x.Content,
-            }).ToArray();
-
-            return this.View(model);
         }
     }
 }

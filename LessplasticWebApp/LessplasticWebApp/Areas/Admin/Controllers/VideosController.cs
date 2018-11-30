@@ -33,30 +33,9 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             var id = this.videoService.CreateVideo(model);
 
-            return this.Redirect("/Admin/Videos/Details?id=" + id);
+            return this.Redirect("/Videos/Details?id=" + id);
         }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Details(int id)
-        {
-            var video = this.videoService.GetVideo(id);
-
-            if (video == null)
-            {
-                return this.Redirect("/");
-            }
-
-            var model = new DetailsVideoViewModel
-            {
-                Id = video.Id,
-                Title = video.Title,
-                Description = video.Description,
-                YoutubeLink = video.YoutubeLink,
-            };
-
-            return this.View(model);
-        }
-
+    
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
@@ -96,7 +75,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             this.videoService.EditVideo(video, model);
 
-            return this.Redirect("/Admin/Videos/Details?id=" + model.Id);
+            return this.Redirect("/Videos/Details?id=" + model.Id);
         }
 
         [Authorize(Roles = "Admin")]
@@ -135,22 +114,6 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.videoService.DeleteVideo(video);
 
             return this.Redirect("/");
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult All()
-        {
-            var videos = this.videoService.GetVideos();
-
-            var model = videos.Select(x => new AllVideosViewModel
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Description = x.Description,
-                YoutubeLink = x.YoutubeLink,
-            }).ToArray();
-
-            return this.View(model);
         }
     }
 }

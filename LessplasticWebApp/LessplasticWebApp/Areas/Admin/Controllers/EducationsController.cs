@@ -24,7 +24,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
         {
             return View();
         }
-        
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(EducationViewModel model)
@@ -36,30 +36,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             var id = this.educationService.CreateEducation(model);
 
-            return this.Redirect("/Admin/Educations/Details?id=" + id);
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Details(int id)
-        {
-            var education = this.educationService.GetEducation(id);
-
-            if (education == null)
-            {
-                return this.Redirect("/");
-            }
-
-            var model = new DetailsEducationViewModel
-            {
-                Id = education.Id,
-                Title = education.Title,
-                Content = education.Content,
-                ImageUrl = education.ImageUrl,
-                AdditionalContent = education.AdditionalContent,
-                AdditionalContentImage = education.AdditionalContentImage,
-            };
-
-            return this.View(model);
+            return this.Redirect("/Educations/Details?id=" + id);
         }
 
         [Authorize(Roles = "Admin")]
@@ -103,7 +80,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             this.educationService.EditEducation(education, model);
 
-            return this.Redirect("/Admin/Educations/Details?id=" + model.Id);
+            return this.Redirect("/Educations/Details?id=" + model.Id);
         }
 
         [Authorize(Roles = "Admin")]
@@ -144,30 +121,6 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.educationService.DeleteEducation(education);
 
             return this.Redirect("/");
-        }
-        
-        [Authorize(Roles = "Admin")]
-        public IActionResult All()
-        {
-            if (!this.User.Identity.IsAuthenticated)
-            {
-                return this.Redirect("/");
-            }
-
-            var educations = this.educationService.GetEducations();
-
-            var model = educations.Select(x => new AllEducationsViewModel
-            {
-                Id = x.Id,
-                Content = x.Content,
-                ImageUrl = x.ImageUrl,
-                Title = x.Title,
-                AdditionalContent = x.AdditionalContent,
-                AdditionalContentImage = x.AdditionalContentImage,
-                DownloadLink = x.DownloadLink,
-            }).ToArray();
-
-            return this.View(model);
         }
     }
 }

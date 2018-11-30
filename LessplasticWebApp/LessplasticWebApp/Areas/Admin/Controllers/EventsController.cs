@@ -36,7 +36,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             var id = this.eventService.CreateEvent(model);
 
-            return this.Redirect("/Admin/Events/Details?id=" + id);
+            return this.Redirect("/Events/Details?id=" + id);
         }
 
         [Authorize(Roles = "Admin")]
@@ -78,34 +78,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             this.eventService.EditEvent(myEvent, model);
 
-            return this.Redirect("/Admin/Events/Details?id=" + model.Id);
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult Details(int id)
-        {
-            var myEventTowns = this.eventService.GetEventTowns(id);
-
-            var myEventParticipants = this.eventService.GetEventParticipants(id);
-
-            var myEvent = this.eventService.GetEvent(id);
-
-            if (myEvent == null)
-            {
-                return this.Redirect("/");
-            }
-
-            var model = new DetailsEventViewModel
-            {
-                Id = myEvent.Id,
-                Name = myEvent.Name,
-                Description = myEvent.Description,
-                EventDate = myEvent.EventDate,
-                Participants = myEventParticipants,
-                Towns = myEventTowns,
-            };
-
-            return this.View(model);
+            return this.Redirect("/Events/Details?id=" + model.Id);
         }
 
         [Authorize(Roles = "Admin")]
@@ -165,22 +138,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             this.eventService.AddParticipant(myEvent, user);
 
-            return this.Redirect("/Admin/Events/Details?id=" + id);
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult All()
-        {
-            var events = this.eventService.GetEvents();
-
-            var model = events.Select(x => new AllEventsViewModel
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Description = x.Description,
-            }).ToArray();
-
-            return this.View(model);
+            return this.Redirect("/Events/Details?id=" + id);
         }
     }
 }

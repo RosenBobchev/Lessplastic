@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lessplastic.Models.Enums;
 using Lessplastic.Models.ViewModels.Articles;
 using Lessplastic.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
@@ -52,13 +53,31 @@ namespace LessplasticWebApp.Controllers
         {
             var articles = this.articleService.GetArticles();
 
-            var model = articles.Select(x => new AllArticleViewModel
+            var model = articles
+                .Where(x => x.Type == ArticleType.Regular || x.Type == ArticleType.Science)
+                .Select(x => new AllArticleViewModel
             {
                 Id = x.Id,
                 Title = x.Title,
                 ArticleImage = x.ArticleImage,
                 Content = x.Content,
-            });
+                DateOnCreation = x.CreatedOn,
+            }).OrderByDescending(x => x.DateOnCreation);
+
+            return this.View(model);
+        }
+
+        public IActionResult Kids()
+        {
+            var articles = this.articleService.GetArticles();
+
+            var model = articles.Where(x => x.Type == ArticleType.Kids).Select(x => new AllArticleViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                ArticleImage = x.ArticleImage,
+                Content = x.Content,
+            }).ToArray();
 
             return this.View(model);
         }

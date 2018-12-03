@@ -67,6 +67,7 @@ namespace LessplasticWebApp
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<IEducationService, EducationService>();
+            services.AddScoped<IHomeService, HomeService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

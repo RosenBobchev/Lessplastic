@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Lessplastic.Models.ViewModels.Pools.AllPoolViewModel>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@foreach (var pool in Model)
+{
+    <h2 class="text-center">@pool.Title</h2>
+    <div class="row col-md-12 text-center">
+        <div class="row col-md-6 mt-2">
+            <div class="col-md-4">
+                <p>Участници: @pool.Users.Count</p>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @if (pool.Users.Any(x => x.LessplasticUser.UserName == this.User.Identity.Name))
+                {
+                    <p>Вече сте записан за събитието!</p>
+                }
+                else
+                {
+                    <div class="col-md-2">
+                        <a asp-area="Admin" asp-controller="Events" asp-action="AddParticipant" asp-route-id="@pool.Id" class="btn btn-color text-color">Присъедини се!</a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <hr class="hr-2 bg-dark" />
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="fb-comments" data-href="https://localhost:44351/Articles/Details/@pool.Id" data-width="100%" data-numposts="5"></div>
+        </div>
+    </div>
+    <div class="row">
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mx-auto">
+                <a asp-area="Admin" asp-controller="Pools" asp-action="Edit" asp-route-id="@pool.Id" class="btn btn-color text-color">Промени</a>
+            </div>
+            <div class="mx-auto">
+                <a asp-area="Admin" asp-controller="Pools" asp-action="Delete" asp-route-id="@pool.Id" class="btn btn-color text-color">Изтрии</a>
+            </div>
+        }
+        <div class="mx-auto">
+            <button onclick="goBack()" class="btn btn-color text-color">Назад</button>
+        </div>
+    </div>
+    <br />
+}

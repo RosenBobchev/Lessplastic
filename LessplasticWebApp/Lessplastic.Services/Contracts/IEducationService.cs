@@ -14,5 +14,7 @@ namespace Lessplastic.Services.Contracts
         void EditEducation(Education education, UpdateDeleteEducationViewModel model);
 
         void DeleteEducation(Education education);
+
+        void IncrementViews(Education education);
     }
 }

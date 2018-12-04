@@ -8,9 +8,7 @@ namespace Lessplastic.Services.Contracts
         Article GetArticle(int id);
 
         Article[] GetArticles();
-
-        Comment[] GetComments(int id);
-
+        
         bool CreateArticle(ArticleViewModel model);
 
         bool EditArticle(Article article, UpdateDeleteArticleViewModel model);

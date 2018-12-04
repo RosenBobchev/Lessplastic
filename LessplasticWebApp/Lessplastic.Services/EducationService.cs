@@ -27,6 +27,7 @@ namespace Lessplastic.Services
                 AdditionalContentImage = model.AdditionalContentImage,
                 DownloadLink = model.DownloadLink,
                 CreatedOn = DateTime.Now,
+                Views = 0,
             };
 
             this.context.Educations.Add(education);
@@ -59,6 +60,12 @@ namespace Lessplastic.Services
             var education = this.context.Educations.FirstOrDefault(x => x.Id == id);
 
             return education;
+        }
+
+        public void IncrementViews(Education education)
+        {
+            education.Views += 1;
+            this.context.SaveChanges();
         }
 
         public Education[] GetEducations()

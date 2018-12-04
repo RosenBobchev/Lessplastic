@@ -53,6 +53,14 @@ namespace Lessplastic.Services
             return articles;
         }
 
+        public Education[] TopEducations()
+        {
+            var articles = this.context.Educations
+                .OrderByDescending(x => x.Views).Take(5).ToArray();
+
+            return articles;
+        }
+
         public Video[] TopVideos()
         {
             var videos = this.context.Videos.OrderByDescending(x => x.CreatedOn).Take(5).ToArray();

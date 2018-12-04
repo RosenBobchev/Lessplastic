@@ -6,11 +6,6 @@ namespace Lessplastic.Models
 {
     public class Article
     {
-        public Article()
-        {
-            this.Comments = new HashSet<Comment>();
-        }
-
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -30,7 +25,5 @@ namespace Lessplastic.Models
         public DateTime CreatedOn { get; set; }
 
         public int Views { get; set; }
-
-        public ICollection<Comment> Comments { get; set; }
     }
 }

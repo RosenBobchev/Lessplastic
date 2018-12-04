@@ -30,7 +30,5 @@ namespace Lessplastic.Models.ViewModels.Articles
         public int Views { get; set; }
 
         public DateTime CreatedOn { get; set; }
-
-        public ICollection<Comment> Comments { get; set; }
     }
 }

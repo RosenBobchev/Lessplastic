@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "Детайли";
 }
-<h3 class="text-center text-black mt-2">@Model.Title</h3>
+<h1 class="text-center text-black mt-2">@Model.Title</h1>
+<div class="row col-md-12">
+    <h5 class="text-center col-md-6">Създадена: @Model.CreatedOn.ToShortDateString()</h5>
+    <h5 class="text-center col-md-6">Прегледи: @Model.Views</h5>
+</div>
+<br />
 <div class="container d-flex justify-content-aroud">
     <text>@Model.Content</text>
 </div>
@@ -20,6 +25,11 @@
     </div>
 }
 <hr class="hr-2 bg-dark" />
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="fb-comments" data-href="https://localhost:44351/Articles/Details/@Model.Id" data-width="100%" data-numposts="5"></div>
+    </div>
+</div>
 <div class="row">
     @if (User.IsInRole("Admin"))
     {

@@ -76,20 +76,14 @@ namespace Lessplastic.Services
 
         public Article GetArticle(int id)
         {
-            var article = this.context.Articles.Include(x => x.Comments).FirstOrDefault(a => a.Id == id);
+            var article = this.context.Articles.FirstOrDefault(a => a.Id == id);
 
             return article;
         }
 
-        public Comment[] GetComments(int id)
-        {
-            var comments = this.context.Comments.Include(x => x.LessplasticUser).Where(a => a.ArticleId == id).ToArray();
-
-            return comments;
-        }
         public Article[] GetArticles()
         {
-            var articles = this.context.Articles.Include(x => x.Comments).ToArray();
+            var articles = this.context.Articles.ToArray();
 
             return articles;
         }

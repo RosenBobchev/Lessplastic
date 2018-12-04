@@ -7,11 +7,13 @@
 {
     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm">
         <ul class="nav navbar-nav navbar-right">
-            <li class="nav-link">
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" class="text-color" title="Manage"><i class="fas fa-user-circle"></i> Здравейте, @UserManager.GetUserName(User)!</a>
-            </li>
-            <li class="navbar-link">
-                    <button type="submit" class="btn btn-link text-color"><i class="fas fa-sign-out-alt"></i> Изход</button>
+            <li class="nav-item dropdown nav-link">
+                <div class="dropdown text-color dropdown-toggle">
+                    <button class="dropbtn"><a asp-area="Identity" asp-page="/Account/Manage/Index" class="text-color" title="Manage"><i class="fas fa-user-circle"></i> Здравейте, @UserManager.GetUserName(User)!</a></button>
+                    <div class="dropdown-content bg-light">
+                        <button type="submit" class="btn btn-link text-black"><i class="fas fa-sign-out-alt"></i> Изход</button>
+                    </div>
+                </div>
             </li>
         </ul>
     </form>

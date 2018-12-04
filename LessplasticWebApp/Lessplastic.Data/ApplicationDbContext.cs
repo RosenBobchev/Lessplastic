@@ -13,7 +13,13 @@ namespace LessplasticWebApp.Data
 
         public DbSet<Article> Articles { get; set; }
 
-        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Pool> Pools { get; set; }
+
+        public DbSet<Answer> Answers { get; set; }
+
+        public DbSet<PoolsAnswers> PoolsAnswers { get; set; }
+
+        public DbSet<PoolsUsers> PoolsUsers { get; set; }
 
         public DbSet<Education> Educations { get; set; }
 
@@ -29,6 +35,10 @@ namespace LessplasticWebApp.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<PoolsUsers>().HasKey(x => new { x.LessplasticUserId, x.PoolId });
+
+            builder.Entity<PoolsAnswers>().HasKey(x => new { x.AnswerId, x.PoolId });
+
             builder.Entity<UserEvents>(x =>
             {
                 x.HasKey(e => new { e.EventId, e.LessplasticUserId });

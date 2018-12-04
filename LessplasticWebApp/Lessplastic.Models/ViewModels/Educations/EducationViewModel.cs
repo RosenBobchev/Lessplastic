@@ -13,5 +13,7 @@
         public string AdditionalContentImage { get; set; }
 
         public string DownloadLink { get; set; }
+
+        public int Views { get; set; }
     }
 }

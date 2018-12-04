@@ -27,6 +27,8 @@ namespace LessplasticWebApp.Controllers
                 return this.Redirect("/");
             }
 
+            this.educationService.IncrementViews(education);
+
             var model = new DetailsEducationViewModel
             {
                 Id = education.Id,
@@ -35,6 +37,8 @@ namespace LessplasticWebApp.Controllers
                 ImageUrl = education.ImageUrl,
                 AdditionalContent = education.AdditionalContent,
                 AdditionalContentImage = education.AdditionalContentImage,
+                CreatedOn = education.CreatedOn,
+                Views = education.Views,
             };
 
             return this.View(model);

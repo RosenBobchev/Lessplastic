@@ -1,0 +1,19 @@
+﻿@model Lessplastic.Models.ViewModels.Pools.UpdateDeletePoolViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+<form class="mx-auto half-width" asp-area="Admin" asp-controller="Pools" asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" value="@Model?.Title" disabled="@Model?.DisabledValue" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group text-center">
+        <input type="submit" value="Промени" class="btn btn-color text-color" />
+    </div>
+</form>

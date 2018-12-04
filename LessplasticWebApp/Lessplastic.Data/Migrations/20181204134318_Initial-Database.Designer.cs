@@ -4,33 +4,22 @@ using LessplasticWebApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lessplastic.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181204134318_Initial-Database")]
+    partial class InitialDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Lessplastic.Models.Answer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Answers");
-                });
 
             modelBuilder.Entity("Lessplastic.Models.Article", b =>
                 {
@@ -183,24 +172,13 @@ namespace Lessplastic.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Content");
+
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
                     b.ToTable("Pools");
-                });
-
-            modelBuilder.Entity("Lessplastic.Models.PoolsAnswers", b =>
-                {
-                    b.Property<int>("AnswerId");
-
-                    b.Property<int>("PoolId");
-
-                    b.HasKey("AnswerId", "PoolId");
-
-                    b.HasIndex("PoolId");
-
-                    b.ToTable("PoolsAnswers");
                 });
 
             modelBuilder.Entity("Lessplastic.Models.PoolsUsers", b =>
@@ -389,19 +367,6 @@ namespace Lessplastic.Data.Migrations
                     b.HasOne("Lessplastic.Models.Town", "Town")
                         .WithMany("Users")
                         .HasForeignKey("TownId");
-                });
-
-            modelBuilder.Entity("Lessplastic.Models.PoolsAnswers", b =>
-                {
-                    b.HasOne("Lessplastic.Models.Answer", "Answer")
-                        .WithMany("Pools")
-                        .HasForeignKey("AnswerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Lessplastic.Models.Pool", "Pool")
-                        .WithMany("Answers")
-                        .HasForeignKey("PoolId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Lessplastic.Models.PoolsUsers", b =>

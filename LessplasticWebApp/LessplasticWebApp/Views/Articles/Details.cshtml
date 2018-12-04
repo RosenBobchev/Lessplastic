@@ -29,14 +29,13 @@
         <img src=@Model?.AdditionalContentImage class="responsive" />
     </div>
 }
-@foreach (var comment in Model.Comments)
-{
-    <div>
-        <p>Потребител: @comment.LessplasticUser.UserName</p>
-        <p>Коментар: @comment.Content</p>
-        <p>Дата: @comment.CreatedOn</p>
+<br />
+<hr />
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="fb-comments" data-href="https://localhost:44351/Articles/Details/@Model.Id" data-width="100%" data-numposts="5"></div>
     </div>
-}
+</div>
 <hr class="hr-2 bg-dark" />
 <div class="row">
     @if (User.IsInRole("Admin"))

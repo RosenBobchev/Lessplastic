@@ -20,8 +20,6 @@ namespace LessplasticWebApp.Controllers
 
         public IActionResult Details(int id)
         {
-            var comments = this.articleService.GetComments(id);
-
             var article = this.articleService.GetArticle(id);
 
             if (article == null)
@@ -43,7 +41,6 @@ namespace LessplasticWebApp.Controllers
                 AdditionalContentImage = article.AdditionalContentImage,
                 CreatedOn = article.CreatedOn,
                 Views = article.Views,
-                Comments = comments,
             };
 
             return this.View(model);

@@ -34,6 +34,15 @@
     </script>
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/bg_BG/sdk.js#xfbml=1&version=v3.2&appId=430720590793427&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
     <div class="container pl-0 pr-0" style="background-color:white; height:auto">
         <nav class="navbar navbar-expand-lg navbar-dark bg-color sticky-top">
             <img src="~/images/46758566_2106303842725855_8669666283278565376_n.jpg" style="max-height:3%; max-width:3%;">
@@ -60,6 +69,9 @@
                     <li class="nav-item nav-link">
                         <a asp-area="" asp-controller="Articles" asp-action="Kids"><i class="fas fa-child"></i> За Деца</a>
                     </li>
+                    <li class="nav-item nav-link">
+                        <a asp-area="" asp-controller="Articles" asp-action="Kids"><i class="fas fa-clipboard-list"></i> Анкети</a>
+                    </li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item dropdown nav-link">
@@ -70,6 +82,7 @@
                                     <a asp-area="Admin" asp-controller="Events" asp-action="Create" class="dropdown-item">Създай събитие</a>
                                     <a asp-area="Admin" asp-controller="Educations" asp-action="Create" class="dropdown-item">Създай проучване</a>
                                     <a asp-area="Admin" asp-controller="Videos" asp-action="Create" class="dropdown-item">Създай видео</a>
+                                    <a asp-area="Admin" asp-controller="Pools" asp-action="Create" class="dropdown-item">Създай анкета</a>
                                 </div>
                             </div>
                         </li>
@@ -99,7 +112,6 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

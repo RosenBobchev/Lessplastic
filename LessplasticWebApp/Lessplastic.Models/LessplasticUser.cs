@@ -8,7 +8,7 @@ namespace Lessplastic.Models
         public LessplasticUser()
         {
             this.Events = new HashSet<UserEvents>();
-            this.Comments = new HashSet<Comment>();
+            this.Pools = new HashSet<PoolsUsers>();
         }
 
         public int? TownId { get; set; }
@@ -19,6 +19,6 @@ namespace Lessplastic.Models
 
         public ICollection<UserEvents> Events { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public ICollection<PoolsUsers> Pools { get; set; }
     }
 }

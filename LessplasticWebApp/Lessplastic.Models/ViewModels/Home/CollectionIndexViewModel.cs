@@ -15,5 +15,7 @@ namespace Lessplastic.Models.ViewModels.Home
         public IEnumerable<IndexViewModel> TopScienceArticles { get; set; }
 
         public IEnumerable<IndexVideoViewModel> NewVideos { get; set; }
+
+        public IEnumerable<IndexViewModel> NewEducations { get; set; }
     }
 }

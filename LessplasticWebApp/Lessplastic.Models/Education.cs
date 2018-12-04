@@ -21,5 +21,7 @@ namespace Lessplastic.Models
         public string DownloadLink { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public int Views { get; set; }
     }
 }

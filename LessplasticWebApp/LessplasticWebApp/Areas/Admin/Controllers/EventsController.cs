@@ -118,27 +118,5 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             return this.Redirect("/");
         }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult AddParticipant(int id)
-        {
-            var myEvent = this.eventService.GetEvent(id);
-
-            if (myEvent == null)
-            {
-                return this.Redirect("/");
-            }
-
-            if (!this.User.Identity.IsAuthenticated)
-            {
-                return this.Redirect("/");
-            }
-
-            var user = this.User.Identity.Name;
-
-            this.eventService.AddParticipant(myEvent, user);
-
-            return this.Redirect("/Events/Details?id=" + id);
-        }
     }
 }

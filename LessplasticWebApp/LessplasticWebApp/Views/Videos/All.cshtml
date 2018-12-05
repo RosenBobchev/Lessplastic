@@ -7,10 +7,10 @@
 <h2 class="text-center">@ViewData["Title"]</h2>
 <hr />
 <div class="container">
-    <div class="row col-xs-12">
+    <div class="row">
         @foreach (var video in Model)
         {
-            <div class="col-xs-4 mr-3 ml-4">
+            <div class="col-md-4 mb-4 responsive">
                 <div>
                     <a asp-controller="Videos" asp-action="Details" asp-route-id="@video.Id">
                         <img src="https://img.youtube.com/vi/@video.YoutubeLink/mqdefault.jpg" alt="tube img" />
@@ -18,7 +18,7 @@
                 </div>
                 <div>
                     <a asp-controller="Videos" asp-action="Details" asp-route-id="@video.Id">
-                        <h5 class="text-black">@video.Title</h5>
+                        <h3 class="text-black">@video.Title</h3>
                         <h5 class="text-black">@video.ShortDescription</h5>
                     </a>
                 </div>

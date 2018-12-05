@@ -15,5 +15,7 @@ namespace Lessplastic.Services.Contracts
         Video[] TopVideos();
 
         Education[] TopEducations();
+
+        Event[] TopEvents();
     }
 }

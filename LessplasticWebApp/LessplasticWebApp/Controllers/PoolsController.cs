@@ -20,7 +20,7 @@ namespace LessplasticWebApp.Controllers
         public IActionResult All()
         {
             var pools = this.poolService.GetPools();
-
+            
             if (pools == null)
             {
                 return this.Redirect("/");
@@ -30,11 +30,33 @@ namespace LessplasticWebApp.Controllers
             {
                 Id = x.Id,
                 Title = x.Title,
-                Users = x.Users,
-                Answers = x.Answers
+                Users = this.poolService.GetPoolsParticipants(x.Id),
+                Answers = this.poolService.GetPoolsAnswers(x.Id),
+                
             });
 
             return this.View(model);
+        }
+
+        public IActionResult AddParticipant(int id)
+        {
+            var pool = this.poolService.GetPool(id);
+
+            if (pool == null)
+            {
+                return this.Redirect("/");
+            }
+
+            if (!this.User.Identity.IsAuthenticated)
+            {
+                return this.Redirect("/");
+            }
+
+            var user = this.User.Identity.Name;
+
+            this.poolService.AddParticipant(pool, user);
+
+            return this.Redirect("/Pools/All");
         }
     }
 }

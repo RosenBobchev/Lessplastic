@@ -36,7 +36,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
 
             var id = this.poolService.CreateEvent(model);
 
-            return this.Redirect("/Pools/Details?id=" + id);
+            return this.Redirect("/Pools/All");
         }
 
         [Authorize(Roles = "Admin")]
@@ -94,7 +94,6 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             {
                 Id = pool.Id,
                 Title = pool.Title,
-                Answers = poolAnswers,
                 DisabledValue = "disabled",
             };
 
@@ -115,28 +114,6 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
             this.poolService.DeleteEvent(pool);
 
             return this.Redirect("/");
-        }
-
-        [Authorize(Roles = "Admin")]
-        public IActionResult AddParticipant(int id)
-        {
-            var pool = this.poolService.GetPool(id);
-
-            if (pool == null)
-            {
-                return this.Redirect("/");
-            }
-
-            if (!this.User.Identity.IsAuthenticated)
-            {
-                return this.Redirect("/");
-            }
-
-            var user = this.User.Identity.Name;
-
-            this.poolService.AddParticipant(pool, user);
-
-            return this.Redirect("/Pools/All");
         }
     }
 }

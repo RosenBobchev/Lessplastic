@@ -27,6 +27,7 @@ namespace LessplasticWebApp.Controllers
             var topKidsArticles = this.homeService.TopKidsArticles();
             var newVideosModel = this.homeService.TopVideos();
             var topEducationsModel = this.homeService.TopEducations();
+            var topEventsModel = this.homeService.TopEvents();
 
             var newArticles = newArticlesModel.Select(x => new IndexViewModel
             {
@@ -76,6 +77,13 @@ namespace LessplasticWebApp.Controllers
                 YoutubeLink = x.YoutubeLink,
             }).ToList();
 
+            var newEvents = topEventsModel.Select(x => new IndexViewModel
+            {
+                Id = x.Id,
+                Title = x.Name,
+                Content = x.Description,
+            }).ToList();
+
             var model = new CollectionIndexViewModel
             {
                 NewArticles = newArticles,
@@ -84,6 +92,7 @@ namespace LessplasticWebApp.Controllers
                 TopScienceArticles = scienceTopArticles,
                 NewVideos = newVideos,
                 NewEducations = topEducations,
+                NewEvents = newEvents,
             };
 
             return this.View(model);

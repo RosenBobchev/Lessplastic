@@ -11,7 +11,5 @@ namespace Lessplastic.Models.ViewModels.Pools
         public string Title { get; set; }
         
         public string DisabledValue { get; set; }
-
-        public ICollection<PoolsAnswers> Answers { get; set; }
     }
 }

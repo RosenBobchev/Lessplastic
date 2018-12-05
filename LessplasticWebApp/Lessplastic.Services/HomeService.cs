@@ -67,5 +67,12 @@ namespace Lessplastic.Services
 
             return videos;
         }
+
+        public Event[] TopEvents()
+        {
+            var events = this.context.Events.OrderByDescending(x => x.CreatedOn).Take(5).ToArray();
+
+            return events;
+        }
     }
 }

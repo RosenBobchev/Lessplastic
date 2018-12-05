@@ -128,5 +128,36 @@
                 </a>
             }
         </div>
+        <div class="col-md-6">
+            <h2>Видеа</h2>
+            <hr />
+            @foreach (var video in Model.NewVideos)
+            {
+                <a asp-controller="Videos" asp-action="Details" asp-route-id="@video.Id">
+                    <div class="media mt-2 mb-2">
+                        <img class="mr-3" width="84" height="84" src="https://img.youtube.com/vi/@video.YoutubeLink/mqdefault.jpg" alt="tube img" />
+                        <div class="media-body text-black">
+                            <h5 class="mt-0">@video.Title</h5>
+                            @video.ShortContent
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>Събития</h2>
+            <hr />
+            @foreach (var myEvent in Model.NewEvents)
+            {
+                <a asp-controller="Events" asp-action="Details" asp-route-id="@myEvent.Id">
+                    <div class="media mt-2 mb-2">
+                        <div class="media-body text-black">
+                            <h5 class="mt-0">@myEvent.Title</h5>
+                            @myEvent.ShortContent
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
     </div>
 </div>

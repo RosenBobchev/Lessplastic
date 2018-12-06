@@ -68,7 +68,7 @@ namespace LessplasticWebApp
             services.AddScoped<IVideoService, VideoService>();
             services.AddScoped<IEducationService, EducationService>();
             services.AddScoped<IHomeService, HomeService>();
-            services.AddScoped<IPoolService, PoolService>();
+            services.AddScoped<IPollService, PollsService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

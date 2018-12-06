@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Lessplastic.Models.ViewModels.Polls.AllPollViewModel>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row col-md-12 mt-3">
+    @foreach (var poll in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-text container justify-content-around">@poll.Title</h5>
+                    @if (poll.Users.Any(x => x.LessplasticUser.UserName == this.User.Identity.Name))
+                    {
+                        <p class="text-center">
+                            Гласували: @poll.Users.Count
+                            @foreach (var answer in poll.Answers)
+                            {
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-color text-color" disabled>@answer.Name : @answer.Voters</button>
+                                </div>
+                            }
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="text-center">
+                            Гласували: @poll.Users.Count
+                        </p>
+                        @foreach (var answer in poll.Answers)
+                        {
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a asp-area="" asp-controller="Polls" asp-action="AddParticipant" asp-route-id="@poll.Id" asp-route-idAnswer="@answer.Id" class="btn btn-color text-color">@answer.Name</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-color text-color" disabled>@answer.Name : @answer.Voters</button>
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="row mt-1">
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="mx-auto">
+                        <a asp-area="Admin" asp-controller="Polls" asp-action="Edit" asp-route-id="@poll.Id" class="btn btn-color text-color">Промени</a>
+                    </div>
+                    <div class="mx-auto">
+                        <a asp-area="Admin" asp-controller="Polls" asp-action="Delete" asp-route-id="@poll.Id" class="btn btn-color text-color">Изтрии</a>
+                    </div>
+                }
+            </div>
+            <br />
+        </div>
+    }
+</div>
+<div class="text-center mb-2">
+    <button onclick="goBack()" class="btn btn-color text-color">Назад</button>
+</div>

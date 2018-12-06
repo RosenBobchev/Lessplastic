@@ -4,13 +4,11 @@ using System.Text;
 
 namespace Lessplastic.Models
 {
-    public class Answer
+    public class PollsUsers
     {
-        public int Id { get; set; }
+        public string LessplasticUserId { get; set; }
 
-        public string Name { get; set; }
-
-        public int Voters { get; set; }
+        public LessplasticUser LessplasticUser { get; set; }
 
         public int PollId { get; set; }
 

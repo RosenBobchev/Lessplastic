@@ -9,8 +9,9 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item dropdown nav-link">
                 <div class="dropdown text-color dropdown-toggle">
-                    <button class="dropbtn"><a asp-area="Identity" asp-page="/Account/Manage/Index" class="text-color" title="Manage"><i class="fas fa-user-circle"></i> Здравейте, @UserManager.GetUserName(User)!</a></button>
-                    <div class="dropdown-content bg-light">
+                    <span><i class="fas fa-user-circle"></i> Здравейте, @UserManager.GetUserName(User)!</span>
+                    <div class="dropdown-content mx-auto bg-light">
+                        <button class="btn btn-link text-black"><a class="bg-light" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-user-cog"></i> Профил</a></button>
                         <button type="submit" class="btn btn-link text-black"><i class="fas fa-sign-out-alt"></i> Изход</button>
                     </div>
                 </div>

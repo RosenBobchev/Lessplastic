@@ -16,6 +16,6 @@ namespace Lessplastic.Services.Contracts
 
         Education[] TopEducations();
 
-        Event[] TopEvents();
+        Event[] TopEvents(string username);
     }
 }

@@ -17,6 +17,6 @@
 </div>
 <div class="form-group">
     <label asp-for="EventDate" class="control-label">Дата на събитието</label>
-    <input asp-for="EventDate" value="@Model?.EventDate" disabled="@Model?.DisabledValue" type="date" class="form-control" />
+    <input asp-for="EventDate" value="@Model.EventDate" disabled="@Model?.DisabledValue" class="form-control" />
     <span asp-validation-for="EventDate" class="text-danger"></span>
 </div>

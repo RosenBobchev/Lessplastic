@@ -11,6 +11,10 @@ a {
     width:80%;
 }
 
+.btn-color{
+    background-color:black;
+}
+
 #myBtn {
     display: none;
     position: fixed;

@@ -19,5 +19,7 @@ namespace Lessplastic.Models.ViewModels.Home
         public IEnumerable<IndexViewModel> NewEducations { get; set; }
 
         public IEnumerable<IndexViewModel> NewEvents { get; set; }
+
+        public IndexPollViewModel NewPoll { get; set; }
     }
 }

@@ -15,8 +15,7 @@ namespace Lessplastic.Models.ViewModels.Articles
 
         [Required]
         public string Content { get; set; }
-
-        [Required]
+        
         public string ContentImage { get; set; }
 
         [Required]

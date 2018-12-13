@@ -72,9 +72,16 @@ namespace Lessplastic.Services
         {
             LessplasticUser user = this.context.Users.FirstOrDefault(x => x.UserName == username);
 
-            var events = this.context.Events.OrderByDescending(x => x.CreatedOn).Take(5).ToArray();
+            var events = this.context.Events.OrderByDescending(x => x.CreatedOn).Take(3).ToArray();
 
             return events;
+        }
+
+        public Poll TopPoll()
+        {
+            var poll = this.context.Polls.OrderByDescending(x => x.CreatedOn).First();
+
+            return poll;
         }
     }
 }

@@ -8,11 +8,16 @@ a {
 }
 
 .page {
-    width:80%;
+    width: 80%;
 }
 
-.btn-color{
-    background-color:black;
+.btn-color {
+    background-color: black;
+}
+
+.long-button {
+    white-space: normal;
+    margin-top: 1%;
 }
 
 #myBtn {
@@ -34,21 +39,21 @@ a {
     border-radius: 4px;
 }
 
-#myBtn:hover {
-    background-color: #555;
-}
+    #myBtn:hover {
+        background-color: #555;
+    }
 
 .responsive {
     width: 100%;
-    max-height:300px;
-    max-width:600px;
+    max-height: 300px;
+    max-width: 600px;
     height: auto;
 }
 
 .scroling {
-    border:1px solid #ccc;
-    font:16px/26px Georgia, Garamond, Serif;
-    overflow:auto;
+    border: 1px solid #ccc;
+    font: 16px/26px Georgia, Garamond, Serif;
+    overflow: auto;
 }
 
 .dropbtn {
@@ -64,7 +69,7 @@ a {
 }
 
 .dropdown-content {
-    display:none;
+    display: none;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
@@ -72,19 +77,19 @@ a {
     z-index: 1;
 }
 
-.dropdown-content a {
-    background-color:white;
-    color: black;
-    text-decoration: none;
-    display: block;
-}
+    .dropdown-content a {
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        display: block;
+    }
 
-.dropdown-content a:hover {
-    background-color: white;
-}
+        .dropdown-content a:hover {
+            background-color: white;
+        }
 
 .dropdown:hover .dropdown-content {
-    display:block;
+    display: block;
 }
 
 .dropdown:hover .dropbtn {

@@ -13,10 +13,12 @@ namespace LessplasticWebApp.Controllers
     public class HomeController : Controller
     {
         private IHomeService homeService;
+        private IPollService pollService;
 
-        public HomeController(IHomeService homeService)
+        public HomeController(IHomeService homeService, IPollService pollService)
         {
             this.homeService = homeService;
+            this.pollService = pollService;
         }
 
         public IActionResult Index()
@@ -29,6 +31,7 @@ namespace LessplasticWebApp.Controllers
             var newVideosModel = this.homeService.TopVideos();
             var topEducationsModel = this.homeService.TopEducations();
             var topEventsModel = this.homeService.TopEvents(user);
+            var topPollModel = this.homeService.TopPoll();
 
             var newArticles = newArticlesModel.Select(x => new IndexViewModel
             {
@@ -85,6 +88,14 @@ namespace LessplasticWebApp.Controllers
                 Content = x.Description,
             }).ToList();
 
+             var newPoll = new IndexPollViewModel
+            {
+                Id = topPollModel.Id,
+                Title = topPollModel.Title,
+                Answers = this.pollService.GetPollsAnswers(topPollModel.Id),
+                Users = this.pollService.GetPollsParticipants(topPollModel.Id),
+            };
+
             var model = new CollectionIndexViewModel
             {
                 NewArticles = newArticles,
@@ -94,6 +105,7 @@ namespace LessplasticWebApp.Controllers
                 NewVideos = newVideos,
                 NewEducations = topEducations,
                 NewEvents = newEvents,
+                NewPoll = newPoll,
             };
 
             return this.View(model);
@@ -108,8 +120,11 @@ namespace LessplasticWebApp.Controllers
 
         public IActionResult Partnership()
         {
-            ViewData["Message"] = "Your application description page.";
+            return View();
+        }
 
+        public IActionResult Privacy()
+        {
             return View();
         }
 

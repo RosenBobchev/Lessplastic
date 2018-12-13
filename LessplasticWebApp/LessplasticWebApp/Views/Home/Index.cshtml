@@ -158,6 +158,47 @@
                     </div>
                 </a>
             }
+            <hr />
+            <h2>Анкета: </h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-text container justify-content-around">@Model.NewPoll.Title</h5>
+                    @if (Model.NewPoll.Users.Any(x => x.LessplasticUser.UserName == this.User.Identity.Name))
+                    {
+                        <p class="text-center">
+                            Гласували: @Model.NewPoll.Users.Count
+                            @foreach (var answer in Model.NewPoll.Answers)
+                            {
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-color text-color" disabled>@answer.Name : @answer.Voters</button>
+                                </div>
+                            }
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="text-center">
+                            Гласували: @Model.NewPoll.Users.Count
+                        </p>
+                        @foreach (var answer in Model.NewPoll.Answers)
+                        {
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a asp-area="" asp-controller="Polls" asp-action="AddParticipant" asp-route-id="@Model.NewPoll.Id" asp-route-idAnswer="@answer.Id" class="btn btn-color text-color">@answer.Name</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-color text-color" disabled>@answer.Name : @answer.Voters</button>
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

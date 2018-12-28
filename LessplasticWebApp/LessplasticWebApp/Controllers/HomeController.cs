@@ -23,14 +23,13 @@ namespace LessplasticWebApp.Controllers
 
         public IActionResult Index()
         {
-            var user = this.User.Identity.Name;
             var newArticlesModel = this.homeService.NewArticles();
             var topRegularArticles = this.homeService.TopRegularArticles();
             var topScienceArticles = this.homeService.TopScienceArticles();
             var topKidsArticles = this.homeService.TopKidsArticles();
             var newVideosModel = this.homeService.TopVideos();
             var topEducationsModel = this.homeService.TopEducations();
-            var topEventsModel = this.homeService.TopEvents(user);
+            var topEventsModel = this.homeService.TopEvents();
             var topPollModel = this.homeService.TopPoll();
 
             var newArticles = newArticlesModel.Select(x => new IndexViewModel

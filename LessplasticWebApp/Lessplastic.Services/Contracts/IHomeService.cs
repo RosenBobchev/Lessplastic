@@ -16,7 +16,7 @@ namespace Lessplastic.Services.Contracts
 
         Education[] TopEducations();
 
-        Event[] TopEvents(string username);
+        Event[] TopEvents();
 
         Poll TopPoll();
     }

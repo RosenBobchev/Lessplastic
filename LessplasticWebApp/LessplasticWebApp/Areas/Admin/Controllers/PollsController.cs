@@ -34,7 +34,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
                 return this.View(model);
             }
 
-            this.pollService.CreateEvent(model);
+            this.pollService.CreatePoll(model);
 
             return this.Redirect("/Polls/All");
         }
@@ -74,7 +74,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
                 return this.Redirect("/");
             }
 
-            this.pollService.EditEvent(poll, model);
+            this.pollService.EditPoll(poll, model);
 
             return this.Redirect("/Polls/All");
         }
@@ -111,7 +111,7 @@ namespace LessplasticWebApp.Areas.Admin.Controllers
                 return this.Redirect("/");
             }
 
-            this.pollService.DeleteEvent(poll);
+            this.pollService.DeletePoll(poll);
 
             return this.Redirect("/");
         }

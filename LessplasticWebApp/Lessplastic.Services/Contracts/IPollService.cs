@@ -12,11 +12,11 @@ namespace Lessplastic.Services.Contracts
 
         Poll[] GetPolls();
 
-        void CreateEvent(PollViewModel model);
+        void CreatePoll(PollViewModel model);
 
-        void EditEvent(Poll poll, UpdateDeletePollViewModel model);
+        void EditPoll(Poll poll, UpdateDeletePollViewModel model);
 
-        void DeleteEvent(Poll poll);
+        void DeletePoll(Poll poll);
         
         PollsUsers[] GetPollsParticipants(int id);
 

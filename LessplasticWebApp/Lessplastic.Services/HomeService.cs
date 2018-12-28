@@ -68,10 +68,8 @@ namespace Lessplastic.Services
             return videos;
         }
 
-        public Event[] TopEvents(string username)
+        public Event[] TopEvents()
         {
-            LessplasticUser user = this.context.Users.FirstOrDefault(x => x.UserName == username);
-
             var events = this.context.Events.OrderByDescending(x => x.CreatedOn).Take(3).ToArray();
 
             return events;

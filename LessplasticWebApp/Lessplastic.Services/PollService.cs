@@ -43,7 +43,7 @@ namespace Lessplastic.Services
             return true;
         }
 
-        public void CreateEvent(PollViewModel model)
+        public void CreatePoll(PollViewModel model)
         {
             var answersInput = model.Answers.Split(", ", StringSplitOptions.RemoveEmptyEntries);
 
@@ -68,13 +68,13 @@ namespace Lessplastic.Services
             this.context.SaveChanges();
         }
 
-        public void DeleteEvent(Poll poll)
+        public void DeletePoll(Poll poll)
         {
             this.context.Remove(poll);
             this.context.SaveChanges();
         }
 
-        public void EditEvent(Poll poll, UpdateDeletePollViewModel model)
+        public void EditPoll(Poll poll, UpdateDeletePollViewModel model)
         {
             poll.Title = model.Title;
 

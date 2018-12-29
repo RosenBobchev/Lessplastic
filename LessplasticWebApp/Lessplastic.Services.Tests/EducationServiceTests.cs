@@ -117,5 +117,24 @@ namespace Lessplastic.Services.Tests
 
             Assert.Equal(education.Title, returnedEducation.Title);
         }
+
+        [Fact]
+        public void GetEducationsShouldReturnAllEducations()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("Database_For_Videos").Options;
+            var dbContext = new ApplicationDbContext(options);
+            var service = new EducationService(dbContext);
+
+            dbContext.Educations.Add(new Education());
+            dbContext.Educations.Add(new Education());
+            dbContext.Educations.Add(new Education());
+            dbContext.Educations.Add(new Education());
+            dbContext.Educations.Add(new Education());
+            dbContext.SaveChanges();
+
+            var educations = service.GetEducations();
+
+            Assert.Equal(5, educations.Length);
+        }
     }
 }

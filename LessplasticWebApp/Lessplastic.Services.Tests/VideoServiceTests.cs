@@ -78,7 +78,7 @@ namespace Lessplastic.Services.Tests
         }
 
         [Fact]
-        public void GetVideoeShouldReturnVideoById()
+        public void GetVideoShouldReturnVideoById()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("Database_For_Videos").Options;
             var dbContext = new ApplicationDbContext(options);
@@ -95,6 +95,25 @@ namespace Lessplastic.Services.Tests
             var returnedVideo = service.GetVideo(1);
 
             Assert.Equal(video.Title, returnedVideo.Title);
+        }
+
+        [Fact]
+        public void GetVideosShouldReturnAllVideos()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("Database_For_Videos").Options;
+            var dbContext = new ApplicationDbContext(options);
+            var service = new VideoService(dbContext);
+
+            dbContext.Videos.Add(new Video());
+            dbContext.Videos.Add(new Video());
+            dbContext.Videos.Add(new Video());
+            dbContext.Videos.Add(new Video());
+            dbContext.Videos.Add(new Video());
+            dbContext.SaveChanges();
+
+            var videos = service.GetVideos();
+
+            Assert.Equal(5, videos.Length);
         }
     }
 }

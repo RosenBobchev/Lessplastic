@@ -141,5 +141,24 @@ namespace Lessplastic.Services.Tests
 
             Assert.Equal(article.Title, returnedArticle.Title);
         }
+
+        [Fact]
+        public void GetArticlesShouldReturnAllArticles()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase("Database_For_Videos").Options;
+            var dbContext = new ApplicationDbContext(options);
+            var service = new ArticleService(dbContext);
+
+            dbContext.Articles.Add(new Article());
+            dbContext.Articles.Add(new Article());
+            dbContext.Articles.Add(new Article());
+            dbContext.Articles.Add(new Article());
+            dbContext.Articles.Add(new Article());
+            dbContext.SaveChanges();
+
+            var articles = service.GetArticles();
+
+            Assert.Equal(5, articles.Length);
+        }
     }
 }

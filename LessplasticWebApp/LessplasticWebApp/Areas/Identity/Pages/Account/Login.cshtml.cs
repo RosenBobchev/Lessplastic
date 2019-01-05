@@ -56,6 +56,11 @@ namespace LessplasticWebApp.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
+            if (this.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/");
+            }
+
             returnUrl = returnUrl ?? Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process

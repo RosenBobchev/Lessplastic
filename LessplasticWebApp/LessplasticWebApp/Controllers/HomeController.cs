@@ -116,12 +116,7 @@ namespace LessplasticWebApp.Controllers
 
             return View();
         }
-
-        public IActionResult Partnership()
-        {
-            return View();
-        }
-
+        
         public IActionResult Privacy()
         {
             return View();
